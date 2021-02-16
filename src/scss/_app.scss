@@ -1,0 +1,17 @@
+body{
+  background-color: rgb(66, 22, 22);
+}
+.list-group{
+  max-height: 300px;
+  overflow: auto;
+}
+.a-custom{
+  color: $gray-900;
+  text-decoration: none;  
+}
+#mapid { 
+  height: 400px; 
+}
+.my-div-icon{
+  background-color: $red;
+}
