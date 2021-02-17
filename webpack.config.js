@@ -18,7 +18,6 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
   },
   optimization:{
     minimizer: [new OptimizeCssAssetsPlugin()]
@@ -47,8 +46,21 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader','sass-loader'],
       },
       {
-        test: /\.html$/i,
-        loader: 'html-loader',
+        test: /\.html$/,
+        use: [
+          {
+            loader:'html-loader',
+            options: {minimize:true}
+          }
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        loader: 'file-loader',
+        options: {
+          name:'[name].[ext]',
+          outputPath: 'img'
+        }
       },
       {
         test: /\.js$/,
