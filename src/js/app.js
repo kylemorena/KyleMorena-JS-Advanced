@@ -85,7 +85,6 @@ function listSelected(){
   const bounds = `${latlng[0]+range},${latlng[1]+range},${latlng[0]-range},${latlng[1]-range}`;
   const stations = loadApiWaqi.mapQueries(bounds,waqiToken,latlng); //here return the Map Queries api
   stations.then(async res => {
-    console.log(res);
     //after I got the api about stations positions using loadApiWaqi.mapQueries I put load them on the map 
     await loadMap(waqiToken,mapboxToken,latlng[0],latlng[1],range,widgetContainer,widgetSelected); 
     //also put them on widget
