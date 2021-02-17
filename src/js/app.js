@@ -45,9 +45,11 @@ window.addEventListener('load', () => {
 //#endregion
 
 //#region  SearchBar
-search.addEventListener('input',() => {
-  if(search.value!=null){
-    const dati = loadApiWaqi.search(search.value,waqiToken);
+
+search.onkeyup = (e) => {
+  console.log(e.target.value);
+  if(e.target.value!=''){
+    const dati = loadApiWaqi.search(e.target.value,waqiToken);
     dati.then(res => {
       if(outputHtml.searchBar(res,listContainer)){
         const listData = listContainer.querySelectorAll("li[data-usage]");
@@ -57,10 +59,18 @@ search.addEventListener('input',() => {
       };
     }).catch(error => {console.log(error)});
   }else{listContainer.innerHTML='';}
-})
-// search.addEventListener("focusout", ()=>{
-//   listContainer.innerHTML='';
-// });
+  if (e.keyCode === 13) {
+    const dati = loadApiWaqi.search(e.target.value,waqiToken);
+    dati.then(async res => {
+      await outputHtml.widget(res,widgetContainer);
+      const widgetItems = widgetContainer.querySelectorAll("a");
+      for (let widget of widgetItems) {
+        widget.addEventListener('click', widgetSelected); 
+      }
+      listContainer.innerHTML='';
+    })
+  }
+}
 //#endregion
 
 //#region List Selection
@@ -77,7 +87,7 @@ function listSelected(){
       for (let widget of widgetItems) {
         widget.addEventListener('click', widgetSelected); 
       }
-      listContainer.innerHTML='';
+    listContainer.innerHTML='';
   })
 }
 //#endregion
@@ -97,6 +107,7 @@ function widgetSelected(){
       for (let widget of widgetItems) {
         widget.addEventListener('click', widgetSelected); 
       }
+      listContainer.innerHTML='';
     })
   })
 }
