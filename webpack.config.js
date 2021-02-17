@@ -34,6 +34,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       filename: 'index.html',
+      favicon:'./src/img/svg/KM_logo.svg',
       chunks:['app']
     }), // aggiunge i tag <script> nel file oltre a crearlo automaticamente index.html in automatico
     new MiniCssExtractPlugin({filename:'[name].css'}),
