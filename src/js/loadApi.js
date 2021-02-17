@@ -1,4 +1,5 @@
 'use strict';
+//my custom json about quality levels
 function addQualityDesc (aqiValue){
   const json = require('../json/qualityLevels.json');
   switch (true) {
@@ -20,7 +21,7 @@ function addQualityDesc (aqiValue){
       console.log("Nessun valore");
   }
 }
-
+//Here I have all type of api from https://aqicn.org/json-api/doc/#api
 const loadApi = {
   search : async function(keyword,token){
     try {
@@ -29,7 +30,6 @@ const loadApi = {
       dati.data.forEach(element => {
           let aqi = Number(element.aqi);
           element["aqiDescription"] = addQualityDesc(aqi);
-
         });
       return dati.data;
     } catch (error) {

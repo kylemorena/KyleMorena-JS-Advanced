@@ -1,3 +1,5 @@
+//Docs api source: https://aqicn.org/json-api/doc/#api
+
 //#region Imports
 import '../index.html';
 import 'bootstrap';
@@ -13,7 +15,7 @@ const mapboxToken = process.env.MAPBOX_Token;
 const search = document.getElementById('search');
 const listContainer = document.getElementById('match-list');
 const widgetContainer = document.querySelector('#widget');
-let range = 0.1;
+let range = 0.1; //diventerà un prompt
 
 //#region  onLoad
 window.addEventListener('load', () => {
@@ -45,12 +47,12 @@ window.addEventListener('load', () => {
 //#endregion
 
 //#region  SearchBar
-
-search.onkeyup = (e) => {
-  console.log(e.target.value);
+search.onkeyup = (e) => { // .onkeyup trigger the key .target.value return the key pressed 
   if(e.target.value!=''){
+    //loadApiWaqi.search return the api using search by name 
     const dati = loadApiWaqi.search(e.target.value,waqiToken);
     dati.then(res => {
+      //If outputHtml is open then assign an event on each "list" 
       if(outputHtml.searchBar(res,listContainer)){
         const listData = listContainer.querySelectorAll("li[data-usage]");
         for (let list of listData) {
@@ -59,30 +61,36 @@ search.onkeyup = (e) => {
       };
     }).catch(error => {console.log(error)});
   }else{listContainer.innerHTML='';}
+  //if "enter" key is triggered then open another type of outputHtml(da progettare ancora)
   if (e.keyCode === 13) {
-    const dati = loadApiWaqi.search(e.target.value,waqiToken);
-    dati.then(async res => {
-      await outputHtml.widget(res,widgetContainer);
-      const widgetItems = widgetContainer.querySelectorAll("a");
-      for (let widget of widgetItems) {
-        widget.addEventListener('click', widgetSelected); 
-      }
-      listContainer.innerHTML='';
-    })
+    // const dati = loadApiWaqi.search(e.target.value,waqiToken);
+    // console.log(dati);
+    // dati.then(async res => {
+    //   await outputHtml.widget(res,widgetContainer);
+    //   const widgetItems = widgetContainer.querySelectorAll("a");
+    //   for (let widget of widgetItems) {
+    //     widget.addEventListener('click', widgetSelected); 
+    //   }
+    //   listContainer.innerHTML='';
+    // })
   }
 }
 //#endregion
 
-//#region List Selection
+//#region List Selection its called when you click on one list opened by searchbar
 function listSelected(){
-  const dataUsage = this.getAttribute('data-usage');
-  const noData = this.getElementsByTagName('h4')[0].textContent;
-  const latlng = JSON.parse(`[${dataUsage}]`)
+  const dataUsage = this.getAttribute('data-usage'); //return the value inside 'data-usage'
+  const noData = this.getElementsByTagName('h4')[0].textContent; //use the name of the city if there is no data
+  const latlng = JSON.parse(`[${dataUsage}]`) 
   const bounds = `${latlng[0]+range},${latlng[1]+range},${latlng[0]-range},${latlng[1]-range}`;
-  const stations = loadApiWaqi.mapQueries(bounds,waqiToken,latlng);
+  const stations = loadApiWaqi.mapQueries(bounds,waqiToken,latlng); //here return the Map Queries api
   stations.then(async res => {
-    await loadMap(waqiToken,mapboxToken,latlng[0],latlng[1],range,widgetContainer,widgetSelected);
+    console.log(res);
+    //after I got the api about stations positions using loadApiWaqi.mapQueries I put load them on the map 
+    await loadMap(waqiToken,mapboxToken,latlng[0],latlng[1],range,widgetContainer,widgetSelected); 
+    //also put them on widget
     await outputHtml.widget(res,widgetContainer,noData);
+    //assign an click event on each widget just created
     const widgetItems = widgetContainer.querySelectorAll("a");
       for (let widget of widgetItems) {
         widget.addEventListener('click', widgetSelected); 
@@ -92,7 +100,7 @@ function listSelected(){
 }
 //#endregion
 
-//#region Widget Selection
+//#region Widget Selection its called when you click on one widget
 function widgetSelected(){
   const widgetName = this.getElementsByTagName('h1')[0].textContent;
   const cityFeed = loadApiWaqi.getCityFeed(widgetName,waqiToken);
@@ -103,6 +111,7 @@ function widgetSelected(){
     stations.then(res=>{
       loadMap(waqiToken,mapboxToken,latlng[0],latlng[1],range,widgetContainer,widgetSelected);
       outputHtml.widget(res,widget);
+      //when refreshed I need that the new ones have their click event
       const widgetItems = widgetContainer.querySelectorAll("a");
       for (let widget of widgetItems) {
         widget.addEventListener('click', widgetSelected); 
@@ -111,14 +120,5 @@ function widgetSelected(){
     })
   })
 }
-//#endregion
-
-//#region  HRM
-// if (module.hot) {
-//   module.hot.accept('./loadApi.js', function() {
-//     console.log('Accepting the updated printMe module!');
-//     loadAPI();
-//   })
-// }
 //#endregion
 

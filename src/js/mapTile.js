@@ -1,3 +1,5 @@
+//check docs on: https://leafletjs.com/reference-1.7.1.html#
+
 import loadApiWaqi from './loadApi';
 import outputHtml from './outputHtml';
 var map = null;

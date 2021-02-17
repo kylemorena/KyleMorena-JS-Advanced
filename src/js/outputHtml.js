@@ -18,7 +18,7 @@ const outputHtml = {
     }else{matchList.innerHTML = ''};
     return true;
   },
-  widget : function(match,widget,noData){
+  widget : function(match,widgetContainer,noData){
     if(match.length>0){
       const html = match.map(info=>{ 
         return info =
@@ -29,10 +29,10 @@ const outputHtml = {
           <small>Time: ${info.station.time}</small>
         </div></a>`
       }).join('');
-      widget.innerHTML = html;
+      widgetContainer.innerHTML = html;
     }
     else if (match.length===0){
-      widget.innerHTML = 
+      widgetContainer.innerHTML = 
       `<div class="card card-body my-1 bg-secondary">
         <h1>${noData}</h1>
         <h3>data not available<h3>
