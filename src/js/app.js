@@ -15,6 +15,7 @@ const mapboxToken = process.env.MAPBOX_Token;
 const search = document.getElementById('search');
 const listContainer = document.getElementById('match-list');
 const widgetContainer = document.querySelector('#widget');
+const title = document.getElementById('cityNameTitle')
 let range = 0.1; //diventerà un prompt
 
 //#region  onLoad
@@ -24,6 +25,7 @@ window.addEventListener('load', () => {
     const bounds = `${crd.latitude+range},${crd.longitude+range},${crd.latitude-range},${crd.longitude-range}`;
     const currPos = loadApiWaqi.geoLatLon(`${crd.latitude};${crd.longitude}`,waqiToken);
     currPos.then(posRes=>{
+      title.innerHTML = posRes.city.name;
       const stations = loadApiWaqi.mapQueries(bounds,waqiToken,posRes.city.geo);
       stations.then(res=>{
         outputHtml.widget(res,widget);
