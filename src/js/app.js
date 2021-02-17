@@ -82,7 +82,8 @@ search.onkeyup = (e) => { // .onkeyup trigger the key .target.value return the k
 //#region List Selection its called when you click on one list opened by searchbar
 function listSelected(){
   const dataUsage = this.getAttribute('data-usage'); //return the value inside 'data-usage'
-  const noData = this.getElementsByTagName('h4')[0].textContent; //use the name of the city if there is no data
+  const cityName = this.getElementsByTagName('h4')[0].textContent; //use the name of the city if there is no data
+  title.innerHTML = cityName;
   const latlng = JSON.parse(`[${dataUsage}]`) 
   const bounds = `${latlng[0]+range},${latlng[1]+range},${latlng[0]-range},${latlng[1]-range}`;
   const stations = loadApiWaqi.mapQueries(bounds,waqiToken,latlng); //here return the Map Queries api
@@ -90,7 +91,7 @@ function listSelected(){
     //after I got the api about stations positions using loadApiWaqi.mapQueries I put load them on the map 
     await loadMap(waqiToken,mapboxToken,latlng[0],latlng[1],range,widgetContainer,widgetSelected); 
     //also put them on widget
-    await outputHtml.widget(res,widgetContainer,noData);
+    await outputHtml.widget(res,widgetContainer,cityName);
     //assign an click event on each widget just created
     const widgetItems = widgetContainer.querySelectorAll("a");
       for (let widget of widgetItems) {
@@ -106,6 +107,7 @@ function widgetSelected(){
   const widgetName = this.getElementsByTagName('h1')[0].textContent;
   const cityFeed = loadApiWaqi.getCityFeed(widgetName,waqiToken);
   cityFeed.then(res =>{
+    title.innerHTML = res.city.name;
     const latlng = res.city.geo;
     const bounds = `${latlng[0]+range},${latlng[1]+range},${latlng[0]-range},${latlng[1]-range}`;
     const stations = loadApiWaqi.mapQueries(bounds,waqiToken,latlng);
