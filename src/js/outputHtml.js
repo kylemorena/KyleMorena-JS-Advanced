@@ -1,5 +1,4 @@
 'use strict';
-
 const outputHtml = {
   searchBar : function(match,matchList){
     let emptyArray= [];
@@ -25,12 +24,10 @@ const outputHtml = {
     if(match.length>0){
       const html = match.map(info=>{ 
         return info =
-        `<a href="#" class="a-custom">
-          <div class="card card-body border-0 mb-1 bg-secondary">
-            <h1>${info.station.name}</h1>
-            <h3 class="text-success">${info.aqi}</h3>
-            <h2 class="text-primary">${info.aqiDescription.level}</h2>
-            <small>Time: ${info.station.time}</small>
+        `<a href="#" class="col p-3 a-custom" data-usage="${info.lat};${info.lon}" >
+          <div class="d-flex flex-column justify-content-center align-content-center bg-secondary">
+            <h3 class="mb-0">${info.station.name}</h3>
+            <p class="mb-0"><span class="text-success">${info.aqi}</span> <span>${info.aqiDescription.level}</span></p>
           </div>
         </a>`
       }).join('');
@@ -38,10 +35,27 @@ const outputHtml = {
     }
     else if (match.length===0){
       widgetContainer.innerHTML = 
-      `<div class="card card-body border-0 mb-1 bg-secondary">
-        <h1>${noData}</h1>
-        <h3>data not available<h3>
+      `<div class="card card-body border-0 mb-1 bg-secondary noData">
+        <h3>${noData}</h3>
+        <p class="mb-0">data not available<p>
       </div>`;
+    }
+  },
+  card: function(cityData,cardContainer){
+    const date = new Date(cityData.time.iso)
+    console.log(cityData)
+    if(cityData!=null){
+      cardContainer.innerHTML =
+      `<div class="card mb-3 border-secondary card-height">
+        <div class="card-header bg-transparent border-secondary">${cityData.city.name}</div>
+        <div class="card-body text-success">
+          <h5 class="card-title">
+            <span class="text-warning">${cityData.aqi}</span> <span>${cityData.aqiDescription.level}</span>
+          </h5>
+          <p class="card-text">${cityData.aqiDescription.health}</p>
+        </div>
+        <div class="card-footer bg-transparent border-secondary">${date}</div>
+      </div>`
     }
   }
 }

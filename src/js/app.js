@@ -13,8 +13,9 @@ import loadMap from './mapTile';
 const waqiToken = process.env.WAQI_Token;
 const mapboxToken = process.env.MAPBOX_Token;
 const search = document.getElementById('search');
-const listContainer = document.getElementById('match-list');
-const widgetContainer = document.querySelector('#widget');
+const listContainer = document.getElementById('ulId');
+const widgetContainer = document.getElementById('widgetId');
+const cardContainer = document.getElementById('cardId');
 const title = document.getElementById('cityNameTitle')
 let range = 0.1; //diventerà un prompt
 
@@ -24,11 +25,12 @@ window.addEventListener('load', () => {
     const crd = pos.coords;
     const bounds = `${crd.latitude+range},${crd.longitude+range},${crd.latitude-range},${crd.longitude-range}`;
     const currPos = loadApiWaqi.geoLatLon(`${crd.latitude};${crd.longitude}`,waqiToken);
-    currPos.then(posRes=>{
+    currPos.then(posRes=>{ //the posRes = position of geoLatLon Api
+      outputHtml.card(posRes,cardContainer);
       title.innerHTML = posRes.city.name;
       const stations = loadApiWaqi.mapQueries(bounds,waqiToken,posRes.city.geo);
       stations.then(res=>{
-        outputHtml.widget(res,widget);
+        outputHtml.widget(res,widgetContainer);
         const widgetItems = widgetContainer.querySelectorAll("a");
         for (let widget of widgetItems) {
           widget.addEventListener('click', widgetSelected); 
@@ -103,21 +105,23 @@ function listSelected(){
         widget.addEventListener('click', widgetSelected); 
       }
   })
+  listContainer.innerHTML = '';
 }
 //#endregion
 
 //#region Widget Selection its called when you click on one widget
 function widgetSelected(){
-  const widgetName = this.getElementsByTagName('h1')[0].textContent;
-  const cityFeed = loadApiWaqi.getCityFeed(widgetName,waqiToken);
-  cityFeed.then(res =>{
+  const widgetLatLon = this.getAttribute('data-usage');
+  const gelocalizedFeed = loadApiWaqi.geoLatLon(widgetLatLon,waqiToken);
+  gelocalizedFeed.then(res =>{
     title.innerHTML = res.city.name;
     const latlng = res.city.geo;
     const bounds = `${latlng[0]+range},${latlng[1]+range},${latlng[0]-range},${latlng[1]-range}`;
     const stations = loadApiWaqi.mapQueries(bounds,waqiToken,latlng);
+    outputHtml.card(res,cardContainer);
     stations.then(res=>{
       loadMap(waqiToken,mapboxToken,latlng[0],latlng[1],range,widgetContainer,widgetSelected);
-      outputHtml.widget(res,widget);
+      outputHtml.widget(res,widgetContainer);
       //when refreshed I need that the new ones have their click event
       const widgetItems = widgetContainer.querySelectorAll("a");
       for (let widget of widgetItems) {

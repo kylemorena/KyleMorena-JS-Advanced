@@ -1,7 +1,8 @@
+
 body{
   background-color: #A9A9A9;
 }
-
+$enable-responsive-font-sizes: true;
 //#region Search bar
 #search:focus{
   background-color: $gray-500;
@@ -23,8 +24,30 @@ body{
 .a-custom{
   color: $gray-900;
   text-decoration: none;  
+  div{
+    text-align: center;
+    border-radius: 0.15rem;
+    h3{
+      font-size: medium;
+      font-weight: bold;
+    }
+    word-wrap: break-word; 
+    height: 100%;
+  }
+}
+.noData{
+  h3{
+    font-size: medium;
+    font-weight: bold;
+  }
+  word-wrap: break-word; 
+  height: 100%;
 }
 //#endregion
+
+.card-height{
+  height: 100%;
+}
 
 //#region Marker on map
 .my-div-icon{

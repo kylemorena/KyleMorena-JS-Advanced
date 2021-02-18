@@ -69,6 +69,7 @@ const loadApi = {
   geoLatLon: async function(latlon,token){
     const response = await fetch(`https://api.waqi.info/feed/geo:${latlon}/?token=${token}`)
     const dati = await response.json();
+    dati.data["aqiDescription"] = addQualityDesc(Number(dati.data.aqi));
     return dati.data;
   }
 }
