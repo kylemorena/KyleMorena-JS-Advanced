@@ -77,12 +77,17 @@ search.onkeyup = (e) => { // .onkeyup trigger the key .target.value return the k
     // })
   }
 }
+window.onclick = (e) =>{
+  if(e.path[3]!=listContainer){
+    listContainer.innerHTML = '';
+  }
+}
 //#endregion
 
 //#region List Selection its called when you click on one list opened by searchbar
 function listSelected(){
   const dataUsage = this.getAttribute('data-usage'); //return the value inside 'data-usage'
-  const cityName = this.getElementsByTagName('h4')[0].textContent; //use the name of the city if there is no data
+  const cityName = this.getElementsByTagName('p')[0].textContent; //use the name of the city if there is no data
   title.innerHTML = cityName;
   const latlng = JSON.parse(`[${dataUsage}]`) 
   const bounds = `${latlng[0]+range},${latlng[1]+range},${latlng[0]-range},${latlng[1]-range}`;
@@ -97,7 +102,6 @@ function listSelected(){
       for (let widget of widgetItems) {
         widget.addEventListener('click', widgetSelected); 
       }
-    listContainer.innerHTML='';
   })
 }
 //#endregion
@@ -119,7 +123,6 @@ function widgetSelected(){
       for (let widget of widgetItems) {
         widget.addEventListener('click', widgetSelected); 
       }
-      listContainer.innerHTML='';
     })
   })
 }

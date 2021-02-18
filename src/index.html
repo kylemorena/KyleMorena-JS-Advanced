@@ -27,22 +27,14 @@
             <a class="nav-link" href="#">Contatti</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input id="search" class="form-control" type="search" placeholder="Search city"/>
-          <!--MATCHLIST-->
-          <div class="bg-primary overflow-auto w-50">
-            <ul id="match-list">
-              <a href="#" class="a-custom">
-                <li class="list-group-item bg-warning">
-                  <h4>Bla</h4>
-                  <span class="text-success">100</span>
-                  <span class="text-primary">Good</span>
-                  <small>Time: Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
-                </li>
-              </a>
+        <div class="bg-transparent">
+          <form class="form-inline my-2 my-lg-0 position-relative">
+            <input id="search" class="form-control flex-fill bg-light" type="search" placeholder="Search city"/>
+            <ul id="match-list" class="p-0 overflow-auto position-absolute bg-primary">
             </ul>
-          </div>
-        </form>
+          </form>
+          <!--MATCHLIST-->
+        </div>
       </div>
     </nav>
     <!--#endregion-->

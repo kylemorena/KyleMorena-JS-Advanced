@@ -1,17 +1,33 @@
 body{
   background-color: #A9A9A9;
 }
-.list-group{
-  max-height: 300px;
-  overflow: auto;
+
+//#region Search bar
+#search:focus{
+  background-color: $gray-500;
 }
+#match-list{
+  height: 400px; 
+}
+#mapid{ 
+  height: 400px; 
+}
+.position-absolute{
+  right: 0;
+  top: 40px;
+  z-index: 1;
+}
+//#endregion
+
+//#region Click Event
 .a-custom{
   color: $gray-900;
   text-decoration: none;  
 }
-#mapid { 
-  height: 400px; 
-}
+//#endregion
+
+//#region Marker on map
 .my-div-icon{
   background-color: $red;
 }
+//#endregion
