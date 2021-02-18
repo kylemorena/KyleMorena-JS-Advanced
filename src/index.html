@@ -9,63 +9,59 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   </head>
   <body>
-        <!--INIZIO NAVBAR-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="#"><img src="./img/svg/KM_logo.svg" alt="" style="width: 40px;"></a>
-        
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Dettagli</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Info</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contatti</a>
-              </li>
+    <!--#region INIZIO NAVBAR-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#"><img src="./img/svg/KM_logo.svg" alt="" style="width: 40px;"></a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dettagli</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Info</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contatti</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input id="search" class="form-control" type="search" placeholder="Search city"/>
+          <!--MATCHLIST-->
+          <div class="bg-primary overflow-auto w-50">
+            <ul id="match-list">
+              <a href="#" class="a-custom">
+                <li class="list-group-item bg-warning">
+                  <h4>Bla</h4>
+                  <span class="text-success">100</span>
+                  <span class="text-primary">Good</span>
+                  <small>Time: Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
+                </li>
+              </a>
             </ul>
-            
-            <form class="form-inline my-2 my-lg-0">
-              <input type="text" name="" id="search" class="form-control-lg" placeholder="Find city"/>
-            </form>
           </div>
-        </nav>
-      <!--FINE NAVBAR-->
+        </form>
+      </div>
+    </nav>
+    <!--#endregion-->
 
-    <div class="container mt-3 rounded-sm">
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-12 m-auto">
+    <!--#region Cards section-->
+    <section class="container mt-3">
+      <div class="d-flex justify-content-center">
           <h3 id="cityNameTitle" class="display-4 mb-3 text-center text-dark">
-           Nome città
           </h3>
-        </div>
-        
-        <!--MATCHLIST-->
-        <div class="col-md-12">
-          
-          <div class="overflow-auto w-50">
-            <ul id="match-list"></ul>
-          </div>
-        </div>
       </div>
-    </div>
-
-    <div class="container pt-5">
       <div class="row row-cols-1 row-cols-md-2">
-
-        <div id="mapid" style="width: 400px;" class="col my-1 rounded"></div>
-
-        <div id="widget" class="col">
-
+        <div id="mapid" class="col p-0 mb-2 rounded"></div>
+        <div id="widget" class="col p-0 pl-md-3 m-0">
           <div id="grafico"></div>
-
         </div>
       </div>
-    </div>
+    </section>
+    <!--#endregion-->
+
 
     <!--
     <div class="d-flex justify-content-center">
@@ -81,11 +77,6 @@
         
       </section>
       -->
-    </div>
-
-
-  
-
-
+    
   </body>
 </html>

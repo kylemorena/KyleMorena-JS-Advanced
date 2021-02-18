@@ -22,12 +22,14 @@ const outputHtml = {
     if(match.length>0){
       const html = match.map(info=>{ 
         return info =
-        `<a href="#" class="a-custom"><div class="card card-body my-1 bg-secondary">
-          <h1>${info.station.name}</h1>
-          <h3 class="text-success">${info.aqi}</h3>
-          <h2 class="text-primary">${info.aqiDescription.level}</h2>
-          <small>Time: ${info.station.time}</small>
-        </div></a>`
+        `<a href="#" class="a-custom">
+          <div class="card card-body  border-0 mb-1 bg-secondary">
+            <h1>${info.station.name}</h1>
+            <h3 class="text-success">${info.aqi}</h3>
+            <h2 class="text-primary">${info.aqiDescription.level}</h2>
+            <small>Time: ${info.station.time}</small>
+          </div>
+        </a>`
       }).join('');
       widgetContainer.innerHTML = html;
     }
