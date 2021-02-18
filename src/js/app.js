@@ -63,21 +63,12 @@ search.onkeyup = (e) => { // .onkeyup trigger the key .target.value return the k
           list.addEventListener('click', listSelected); 
         }
       };
+      if (e.keyCode === 13) {
+        outputHtml.widget(res,widgetContainer);
+        listContainer.innerHTML='';
+      }
     }).catch(error => {console.log(error)});
   }else{listContainer.innerHTML='';}
-  //if "enter" key is triggered then open another type of outputHtml(da progettare ancora)
-  if (e.keyCode === 13) {
-    // const dati = loadApiWaqi.search(e.target.value,waqiToken);
-    // console.log(dati);
-    // dati.then(async res => {
-    //   await outputHtml.widget(res,widgetContainer);
-    //   const widgetItems = widgetContainer.querySelectorAll("a");
-    //   for (let widget of widgetItems) {
-    //     widget.addEventListener('click', widgetSelected); 
-    //   }
-    //   listContainer.innerHTML='';
-    // })
-  }
 }
 window.onclick = (e) =>{
   if(e.path[3]!=listContainer){
@@ -95,6 +86,11 @@ function listSelected(){
   const bounds = `${latlng[0]+range},${latlng[1]+range},${latlng[0]-range},${latlng[1]-range}`;
   const stations = loadApiWaqi.mapQueries(bounds,waqiToken,latlng); //here return the Map Queries api
   stations.then(async res => {
+    console.log(res[0]);
+    const gelocalizedFeed = loadApiWaqi.geoLatLon(`${res[0].lat};${res[0].lon}`,waqiToken);
+    gelocalizedFeed.then(res=>{
+      outputHtml.card(res,cardContainer);
+    })
     //after I got the api about stations positions using loadApiWaqi.mapQueries I put load them on the map 
     await loadMap(waqiToken,mapboxToken,latlng[0],latlng[1],range,widgetContainer,widgetSelected); 
     //also put them on widget

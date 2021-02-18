@@ -43,7 +43,6 @@ const outputHtml = {
   },
   card: function(cityData,cardContainer){
     const date = new Date(cityData.time.iso)
-    console.log(cityData)
     if(cityData!=null){
       cardContainer.innerHTML =
       `<div class="card mb-3 border-secondary card-height">
