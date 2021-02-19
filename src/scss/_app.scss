@@ -1,22 +1,35 @@
-
+$enable-responsive-font-sizes: true;
 body{
   background-color: #A9A9A9;
 }
-$enable-responsive-font-sizes: true;
+
+//----------------------------Commons elements-------------------------
+
 //#region Search bar
-#search:focus{
-  background-color: $gray-500;
-}
-#match-list{
-  height: 400px; 
-}
-#mapid{ 
-  height: 400px; 
-}
-.position-absolute{
-  right: 0;
-  top: 40px;
+.provaRel{
   z-index: 1;
+  //Input
+  #search:focus{
+    background-color: $gray-500;
+  }
+  //UL list
+  #ulId{
+    max-width: 100%;
+    height: auto;
+    text-overflow: hide;
+    font-size: 14px;
+    h4{
+      font-size: 14px;
+    }
+    .custom{
+      text-decoration: none;
+    }    
+  }
+  .position-absolute{
+    right: 0;
+    top: 40px;
+    z-index: 1;
+  }
 }
 //#endregion
 
@@ -32,7 +45,7 @@ $enable-responsive-font-sizes: true;
       font-weight: bold;
     }
     word-wrap: break-word; 
-    height: 100%;
+    min-height: 100%;
   }
 }
 .noData{
@@ -45,12 +58,24 @@ $enable-responsive-font-sizes: true;
 }
 //#endregion
 
+//#region Map
+#mapid{ 
+  height: 400px; 
+}
+//Marker on map
+.my-div-icon{
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: $red;
+  span{
+    align-self: center;
+  }
+}
+//#endregion
+
+//#region Card
 .card-height{
   height: 100%;
-}
-
-//#region Marker on map
-.my-div-icon{
-  background-color: $red;
 }
 //#endregion
