@@ -3,7 +3,7 @@
 import loadApiWaqi from './loadApi';
 import outputHtml from './outputHtml';
 var map = null;
-export default function loadMap(waqiToken,mapboxToken,lan,lon,range,widgetContainer,widgetSelected){
+export default function loadMap(waqiToken,mapboxToken,lan,lon,range,widgetContainer,widgetSelected,listContainer){
   'use strict';
   if(map!=undefined){
     map.remove();
@@ -18,6 +18,7 @@ export default function loadMap(waqiToken,mapboxToken,lan,lon,range,widgetContai
   }).on('load',mapInfo).addTo(map);  
   map.on('moveend', mapInfo);
   function mapInfo(){
+    if(listContainer!=null){listContainer.innerHTML = '';}
     let crd = map.getBounds();
     let bounds = `${crd._northEast.lat},${crd._northEast.lng},${crd._southWest.lat},${crd._southWest.lng}`;
     const dati = loadApiWaqi.mapQueries(bounds,waqiToken);
