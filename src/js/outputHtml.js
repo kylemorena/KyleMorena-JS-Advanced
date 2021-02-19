@@ -6,14 +6,13 @@ const outputHtml = {
       match.length=5;
       emptyArray = match.map(info=>{
         return info = 
-        `<a href="#" class="a-custom">
-          <li class="list-group-item p-1 m-0 bg-warning" data-usage="${info.station.geo[0]},${info.station.geo[1]}">
-            <p class="lead">${info.station.name}</p>
-            <span class="text-success">${info.aqi}</span>
-            <span class="text-primary">${info.aqiDescription.level}</span>
-            <small>Time: ${info.time.stime}</small>
+        `<a href="#" class="custom text-dark bg-secondary">
+          <li class="list-group-item p-1 m-0" data-usage="${info.station.geo[0]},${info.station.geo[1]}">
+            <h6 class="mb-0">${info.station.name}</h6>
+            <span class="mb-0 text-success">${info.aqi}</span>
+            <small class="mb-0">Last Update: ${info.time.stime}</small>
           </li>
-          </a>`;
+        </a>`;
       }).join('');
       matchList.classList.add('list-group');
       matchList.innerHTML=emptyArray;

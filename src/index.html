@@ -2,40 +2,24 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>JavaScript-Advanced</title>
+    <title>JavaScript-Advance</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="${require('img/svg/KM_logo.svg')}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   </head>
   <body>
     <!--#region INIZIO NAVBAR-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#"><img src="./img/svg/KM_logo.svg" alt="" style="width: 40px;"></a>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Dettagli</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Info</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contatti</a>
-          </li>
-        </ul>
-        <div class="bg-transparent">
-          <form class="form-inline my-2 my-lg-0 position-relative">
-            <input id="search" class="form-control flex-fill bg-light" type="search" placeholder="Search city"/>
-            <ul id="ulId" class="p-0 overflow-auto position-absolute bg-primary">
-            </ul>
-          </form>
-          <!--MATCHLIST-->
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark d-flex justify-content-between bg-dark">
+      <a class="navbar-brand" href="#"><img src="./img/svg/KM_logo.svg" alt="" style="width: 40px;"/></a>
+      <div class="d-flex bg-transparent">
+        <form class="form-inline d-flex my-2 my-lg-0 position-relative">
+          <input id="search" class="form-control flex-fill bg-light" type="search" placeholder="Search city"autocomplete="off"/>
+          <ul id="ulId" class="p-0 overflow-auto position-absolute">
+          </ul>
+        </form>
+        <!--MATCHLIST-->
       </div>
+      <a id='yourPosId' class="nav-link text-light" href="#">Your Position</a>
     </nav>
     <!--#endregion-->
 
@@ -50,7 +34,7 @@
       </div>
       <div class="row row-cols-1 row-cols-md-2">
         <div class="col">
-         <div id="mapid" class="p-0 mb-2 mb-md-0 rounded"></div>
+         <div id="mapid" class="p-0 mb-2 mb-md-0 rounded position-relative"></div>
         </div>
         <div id="cardId" class="col">
         </div>

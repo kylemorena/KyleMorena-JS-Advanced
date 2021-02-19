@@ -27,9 +27,9 @@ module.exports = {
     open:true,
     contentBase: './dist',
     hot: true,
+    port:8000
   },
   plugins: [
-    new CleanWebpackPlugin(),//cancella in automatica quello che non ci serve
     new webpack.HotModuleReplacementPlugin(), 
     new HtmlWebpackPlugin({
       template: 'src/index.html',
@@ -37,6 +37,7 @@ module.exports = {
       favicon:'./src/img/svg/KM_logo.svg',
       chunks:['app']
     }), // aggiunge i tag <script> nel file oltre a crearlo automaticamente index.html in automatico
+    new CleanWebpackPlugin(),//cancella in automatica quello che non ci serve
     new MiniCssExtractPlugin({filename:'[name].css'}),
     new Dotenv({path:'./.env'}) //creo la varibile ambiente
   ],
