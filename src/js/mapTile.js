@@ -2,6 +2,8 @@
 
 import loadApiWaqi from './loadApi';
 import outputHtml from './outputHtml';
+import getImg from '../img/svg/triangle.svg';
+
 var map = null;
 export default function loadMap(waqiToken,mapboxToken,lan,lon,range,widgetContainer,widgetSelected,listContainer){
   'use strict';
@@ -25,7 +27,10 @@ export default function loadMap(waqiToken,mapboxToken,lan,lon,range,widgetContai
     dati.then(res=>{
       res.forEach((element) => {
         const iconCustom = L.divIcon({
-          html:`<span>${element.aqi}</span>`,
+          html:`
+            <img src="${getImg}"/>
+            <span>${element.aqi}</span>
+          `,
           className:'my-div-icon',
           iconSize:[30,30]
         });
