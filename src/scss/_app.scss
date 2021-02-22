@@ -40,9 +40,8 @@ form.position-relative{
   color: $gray-900;
   text-decoration: none;  
   div{
-    text-align: center;
     border-radius: 0.15rem;
-    h3{
+    h4{
       font-size: medium;
       font-weight: bold;
     }
@@ -50,7 +49,7 @@ form.position-relative{
     min-height: 100%;
   }
 }
-.noData{
+.unavailable{
   h3{
     font-size: medium;
     font-weight: bold;

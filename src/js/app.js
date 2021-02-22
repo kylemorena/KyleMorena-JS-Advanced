@@ -42,7 +42,7 @@ const successCallback = (pos) =>{
         widget.addEventListener('click', widgetSelected); 
       }
     })
-    loadMap(waqiToken,mapboxToken,crd.latitude,crd.longitude,range,widgetContainer,widgetSelected,listContainer);
+    loadMap(waqiToken,mapboxToken,crd.latitude,crd.longitude,range,cardContainer,widgetContainer,listContainer,widgetSelected);
   })
 }
 const errorCallback = (error)=>{
@@ -96,14 +96,15 @@ function listSelected(){
   const bounds = `${latlng[0]+range},${latlng[1]+range},${latlng[0]-range},${latlng[1]-range}`;
   const stations = loadApiWaqi.mapQueries(bounds,waqiToken,latlng); //here return the Map Queries api
   stations.then(async res => {
-    if(res.lenght>0){
-      const gelocalizedFeed = loadApiWaqi.geoLatLon(`${res[0].lat};${res[0].lon}`,waqiToken);
+    if(res.length>0){
+      const gelocalizedFeed = loadApiWaqi.getCityFeed(res[0].station.name,waqiToken);
       gelocalizedFeed.then(res=>{
         outputHtml.card(res,cardContainer);
       })
     }
+    else{ outputHtml.card(res,cardContainer,cityName);}
     //after I got the api about stations positions using loadApiWaqi.mapQueries I put load them on the map 
-    await loadMap(waqiToken,mapboxToken,latlng[0],latlng[1],range,widgetContainer,widgetSelected,listContainer); 
+    await loadMap(waqiToken,mapboxToken,latlng[0],latlng[1],range,cardContainer,widgetContainer,listContainer,widgetSelected);
     //also put them on widget
     await outputHtml.widget(res,widgetContainer,cityName);
     //assign an click event on each widget just created
@@ -127,7 +128,7 @@ function widgetSelected(){
     const stations = loadApiWaqi.mapQueries(bounds,waqiToken,latlng);
     outputHtml.card(res,cardContainer);
     stations.then(res=>{
-      loadMap(waqiToken,mapboxToken,latlng[0],latlng[1],range,widgetContainer,widgetSelected,listContainer);
+      loadMap(waqiToken,mapboxToken,latlng[0],latlng[1],range,cardContainer,widgetContainer,listContainer,widgetSelected);
       outputHtml.widget(res,widgetContainer);
       //when refreshed I need that the new ones have their click event
       const widgetItems = widgetContainer.querySelectorAll("a");

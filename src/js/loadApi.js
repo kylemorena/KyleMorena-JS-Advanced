@@ -40,6 +40,7 @@ const loadApi = {
     try {
       const response = await fetch(`https://api.waqi.info/feed/${name}/?token=${token}`);
       const dati = await response.json();
+      dati.data["aqiDescription"] = addQualityDesc(Number(dati.data.aqi));
       return dati.data;
     } catch (error) {
       console.log(`loadApi.getCityFeed error: ${error}`);

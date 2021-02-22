@@ -6,12 +6,12 @@ import triangleSvg from '../img/svg/triangle.svg';
 import '../../node_modules/leaflet/dist/leaflet.js';
 
 var map = null;
-export default function loadMap(waqiToken,mapboxToken,lan,lon,range,widgetContainer,widgetSelected,listContainer){
+export default function loadMap(waqiToken,mapboxToken,lat,lon,range,cardContainer,widgetContainer,listContainer,widgetSelected){
   'use strict';
   if(map!=undefined){
     map.remove();
   }
-  map  =  L.map('mapid').fitBounds([[lan+range,lon+range],[lan-range,lon-range]]);
+  map  =  L.map('mapid').fitBounds([[lat+range,lon+range],[lat-range,lon-range]]);
   L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${mapboxToken}`,{
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
@@ -56,6 +56,10 @@ export default function loadMap(waqiToken,mapboxToken,lan,lon,range,widgetContai
     let bounds = `${e.latlng.lat+range},${e.latlng.lng+range},${e.latlng.lat-range},${e.latlng.lng-range}`;
     const dati = loadApiWaqi.mapQueries(bounds,waqiToken,latlng);
     dati.then(res=>{
+      const gelocalizedFeed = loadApiWaqi.getCityFeed(res[0].station.name,waqiToken);
+      gelocalizedFeed.then(res=>{
+        outputHtml.card(res,cardContainer);
+      })
       outputHtml.widget(res,widgetContainer);
       const widgetItems = widgetContainer.querySelectorAll("a");
       for (let widget of widgetItems) {
