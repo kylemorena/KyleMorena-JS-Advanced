@@ -16,7 +16,7 @@ form.position-relative{
     max-width: 100%;
     height: auto;
     text-overflow: hide;
-    font-size: 14px;
+    font-size: 0.9rem;
     h4{
       font-size: 14px;
     }
@@ -61,6 +61,12 @@ form.position-relative{
 #mapid{ 
   height: 400px; 
 }
+.my-popup-custom{
+  p{
+    font-weight: bold;
+    color: #1A1A1A;
+  }
+}
 .my-div-icon{
   display: flex;
   justify-content: center;
@@ -68,6 +74,7 @@ form.position-relative{
   flex-direction: column;
   text-align: center;
   p{
+    font-size: 1rem;
     min-width: 20px;
     font-weight: bold;
     text-align: center;
@@ -76,8 +83,8 @@ form.position-relative{
     border: 1px solid #1A1A1A;
   }
   img{
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
   }
 }
 

@@ -27,16 +27,24 @@ export default function loadMap(waqiToken,mapboxToken,lan,lon,range,widgetContai
     const dati = loadApiWaqi.mapQueries(bounds,waqiToken);
     dati.then(res=>{
       res.forEach((element) => {
+        const latlng = L.latLng(element.lat,element.lon);
         const iconCustom = L.divIcon({
-          iconSize:null,
           html:`
               <p class="mb-0" style="background-color:${element.aqiDescription.color}">${element.aqi}</p>
               <img src="${triangleSvg}"/>`,
           className: 'my-div-icon'
         });
-        let marker = L.marker([element.lat,element.lon],{icon:iconCustom}).addTo(map);
+        let marker = L.marker(latlng,{icon:iconCustom}).addTo(map);
         marker.on('click',onClick);  
-        marker.bindPopup(`${element.aqi}`);
+        const customPopup = L.popup()
+        .setContent(`
+          <h5 class="fw-bold">${element.station.name}</h5>
+          <p class="lead text-center" style="background-color:${element.aqiDescription.color}">${element.aqi} ${element.aqiDescription.level}</p>
+          <span>${new Date(element.station.time)}</span>
+        `
+        )
+        .setLatLng(marker.getLatLng())
+        marker.bindPopup(customPopup,{className:'my-popup-custom'});
         marker.on('mouseover',function (e) {this.openPopup();});  
         marker.on('mouseout',function (e) {this.closePopup();;});  
       })
