@@ -8,12 +8,15 @@ body{
 //#region Search bar
 form.position-relative{
   //Input
+  #search{
+    min-width: 25vw;
+  }
   #search:focus{
     background-color: $gray-500;
   }
   //UL list
   #ulId{
-    max-width: 100%;
+    min-width: 25vw;
     height: auto;
     text-overflow: hide;
     font-size: 0.9rem;
