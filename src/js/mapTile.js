@@ -2,7 +2,8 @@
 
 import loadApiWaqi from './loadApi';
 import outputHtml from './outputHtml';
-import getImg from '../img/svg/triangle.svg';
+import triangleSvg from '../img/svg/triangle.svg';
+import '../../node_modules/leaflet/dist/leaflet.js';
 
 var map = null;
 export default function loadMap(waqiToken,mapboxToken,lan,lon,range,widgetContainer,widgetSelected,listContainer){
@@ -27,12 +28,11 @@ export default function loadMap(waqiToken,mapboxToken,lan,lon,range,widgetContai
     dati.then(res=>{
       res.forEach((element) => {
         const iconCustom = L.divIcon({
+          iconSize:null,
           html:`
-            <img src="${getImg}"/>
-            <span>${element.aqi}</span>
-          `,
-          className:'my-div-icon',
-          iconSize:[30,30]
+              <p class="mb-0" style="background-color:${element.aqiDescription.color}">${element.aqi}</p>
+              <img src="${triangleSvg}"/>`,
+          className: 'my-div-icon'
         });
         let marker = L.marker([element.lat,element.lon],{icon:iconCustom}).addTo(map);
         marker.on('click',onClick);  

@@ -1,42 +1,49 @@
 {
   "nan":{
     "value":"no data",
+    "color":"gray",
     "level": "no data",
     "health":"no data",
     "cautionary":"none"
   },
   "good":{
     "value":"0-50",
+    "color":"#009966",
     "level": "Good",
     "health":"Air quality is considered satisfactory, and air pollution poses little or no risk",
     "cautionary":"none"
   },
   "moderate":{
     "value":"51-100",
+    "color":"#FFDE33",
     "level": "Moderate",
     "health":"Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.",
     "cautionary":"Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion."
   },
   "unhealtysensgroup":{
     "value":"101-150",
+    "color":"#FF9933",
     "level": "Unhealthy for Sensitive Groups",
     "health":"Members of sensitive groups may experience health effects. The general public is not likely to be affected.",
     "cautionary":"Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion."
   },
   "unhealthy":{
     "value":"151-200",
+    "color":"#CC0033",
     "level": "Unhealthy",
     "health":"Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects",
     "cautionary":"Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion"
   },
   "veryunhealty":{
     "value":"251-300",
+    "color":"#660099",
     "level": "Very Unhealthy",
     "health":"Health warnings of emergency conditions. The entire population is more likely to be affected",
     "cautionary":"Active children and adults, and people with respiratory disease, such as asthma, should avoid all outdoor exertion; everyone else, especially children, should limit outdoor exertion."
   },
   "hazardous":{
     "value":"300+",
+    "color":"#7E0023",
     "level": "Hazardous",
     "health":"Health alert: everyone may experience more serious health effects",
     "cautionary":"Everyone should avoid all outdoor exertion"

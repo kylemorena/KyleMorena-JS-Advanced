@@ -26,7 +26,10 @@ const outputHtml = {
         `<a href="#" class="col p-3 a-custom" data-usage="${info.lat};${info.lon}" >
           <div class="d-flex flex-column justify-content-center align-content-center bg-secondary">
             <h3 class="mb-0">${info.station.name}</h3>
-            <p class="mb-0"><span class="text-success">${info.aqi}</span> <span>${info.aqiDescription.level}</span></p>
+            <p class="mb-0">
+              <span style="color:${info.aqiDescription.color}">${info.aqi}</span> 
+              <span style="color:${info.aqiDescription.color}">${info.aqiDescription.level}</span>
+            </p>
           </div>
         </a>`
       }).join('');
@@ -48,9 +51,10 @@ const outputHtml = {
         <div class="card-header bg-transparent border-secondary">${cityData.city.name}</div>
         <div class="card-body text-success">
           <h5 class="card-title">
-            <span class="text-warning">${cityData.aqi}</span> <span>${cityData.aqiDescription.level}</span>
+            <span style="color:${cityData.aqiDescription.color}">${cityData.aqi}</span> 
+            <span style="color:${cityData.aqiDescription.color}">${cityData.aqiDescription.level}</span>
           </h5>
-          <p class="card-text">${cityData.aqiDescription.health}</p>
+          <p class="card-text" style="color:${cityData.aqiDescription.color}">${cityData.aqiDescription.health}</p>
         </div>
         <div class="card-footer bg-transparent border-secondary">${date}</div>
       </div>`

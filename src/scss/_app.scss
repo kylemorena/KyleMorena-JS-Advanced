@@ -61,16 +61,26 @@ form.position-relative{
 #mapid{ 
   height: 400px; 
 }
-//Marker on map
 .my-div-icon{
   display: flex;
   justify-content: center;
-  border-radius: 50%;
-  background-color: $red;
-  span{
-    align-self: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  p{
+    width: 100%;
+    font-weight: bold;
+    text-align: center;
+    padding: 3px;
+    border-radius: 0.25rem;
+    border: 1px solid #1A1A1A;
+  }
+  img{
+    width: 50%;
+    height: 50%;
   }
 }
+
 //#endregion
 
 //#region Card

@@ -49,17 +49,17 @@ const loadApi = {
     try {
       const response = await fetch(`https://api.waqi.info/map/bounds/?latlng=${bounds}&token=${token}`);
       const dati = await response.json();
-      if(currPos!=undefined){
-        dati.data.forEach((element,index,arr) => {
-          let aqi = Number(element.aqi);
-          element["aqiDescription"] = addQualityDesc(aqi);
+      dati.data.forEach((element,index,arr) => {
+        let aqi = Number(element.aqi);
+        element["aqiDescription"] = addQualityDesc(aqi);
+        if(currPos!=undefined) {
           if(JSON.stringify(currPos)===JSON.stringify([element.lat,element.lon]) && index > 0){
             let temp = arr[0];
             arr[0] = arr[index];
             arr[index] = temp;
           }
-        });
-      }
+        }
+      });
       // else{console.log('currPos non è stato inserito')}
       return dati.data;
     } catch (error) {
