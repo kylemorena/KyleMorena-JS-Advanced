@@ -14,7 +14,7 @@ const waqiToken = process.env.WAQI_Token;
 const mapboxToken = process.env.MAPBOX_Token;
 const search = document.getElementById('search');
 const yourPos = document.getElementById('yourPosId');
-const listContainer = document.getElementById('ulId');
+const listContainer = document.getElementById('unorderListId');
 const widgetContainer = document.getElementById('widgetId');
 const cardContainer = document.getElementById('cardId');
 const title = document.getElementById('cityNameTitle')
@@ -74,6 +74,7 @@ search.onkeyup = (e) => { // .onkeyup trigger the key .target.value return the k
         }
       };
       if (e.keyCode === 13) {
+        console.log(res);
         outputHtml.widget(res,widgetContainer);
         listContainer.innerHTML='';
       }
@@ -90,19 +91,22 @@ window.onclick = (e) =>{
 //#region List Selection its called when you click on one list opened by searchbar
 function listSelected(){
   const dataUsage = this.getAttribute('data-usage'); //return the value inside 'data-usage'
-  const cityName = this.getElementsByTagName('h6')[0].textContent; //If you have an error, check the TagName
+  const url = this.querySelector('h6').getAttribute('data-usage'); //If you have an error, check the TagName
+  const cityName = this.getElementsByTagName('h6')[0].textContent;
   title.innerHTML = cityName;
   const latlng = JSON.parse(`[${dataUsage}]`) 
   const bounds = `${latlng[0]+range},${latlng[1]+range},${latlng[0]-range},${latlng[1]-range}`;
   const stations = loadApiWaqi.mapQueries(bounds,waqiToken,latlng); //here return the Map Queries api
   stations.then(async res => {
-    if(res.length>0){
-      const gelocalizedFeed = loadApiWaqi.getCityFeed(res[0].station.name,waqiToken);
+    console.log(res);
+    // if(res.length>0){
+      const gelocalizedFeed = loadApiWaqi.getCityFeed(url,waqiToken);
       gelocalizedFeed.then(res=>{
+        console.log(res);
         outputHtml.card(res,cardContainer);
       })
-    }
-    else{ outputHtml.card(res,cardContainer,cityName);}
+    // }
+    // else{ outputHtml.card(res,cardContainer,cityName);}
     //after I got the api about stations positions using loadApiWaqi.mapQueries I put load them on the map 
     await loadMap(waqiToken,mapboxToken,latlng[0],latlng[1],range,cardContainer,widgetContainer,listContainer,widgetSelected);
     //also put them on widget

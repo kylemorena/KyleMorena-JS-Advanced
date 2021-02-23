@@ -2,8 +2,8 @@
   "nan":{
     "value":"no data",
     "color":"gray",
-    "level": "no data",
-    "health":"no data",
+    "level": "Not available",
+    "health":"",
     "cautionary":"none"
   },
   "good":{

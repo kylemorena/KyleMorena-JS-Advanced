@@ -8,12 +8,12 @@
   <body>
     <!--#region NAVBAR-->
     <nav class="navbar navbar-expand-lg navbar-dark d-flex justify-content-between bg-dark">
-      <a class="navbar-brand" href="#"><img src="./img/svg/KM_logo.svg" alt="" style="width: 40px;"/></a>
+      <a class="navbar-brand" href="index.html"><img src="./img/svg/KM_logo.svg" alt="" style="width: 40px;"/></a>
       <div class="d-flex">
         <form class="form-inline d-flex my-2 my-lg-0 position-relative">
           <input id="search" class="form-control flex-fill bg-light" type="search" placeholder="Search city"autocomplete="off"/>
           <!--MATCHLIST-->
-          <ul id="ulId" class="p-0 overflow-auto position-absolute">
+          <ul id="unorderListId" class="p-0 rounded-sm overflow-auto position-absolute">
           </ul>
         </form>
       </div>
@@ -21,12 +21,14 @@
     </nav>
     <!--#endregion-->
 
-    <!--#region Cards section-->
-    <section class="container mt-3">
-      <div id="widgetId" class="row row-cols-2 row-cols-md-3 row-cols-lg-4"></div>
-      <div class="d-flex justify-content-center">
-          <h3 id="cityNameTitle" class="display-4 mb-3 text-center text-dark"></h3>
+    <!--#region Widget & Cards section-->
+    <section class="container my-5">
+      <!-- Widgets -->
+      <div id="widgetId" class="row row-cols-2 row-cols-lg-4 mb-2"></div>
+      <div class="d-flex justify-content-center mb-2">
+          <h1 id="cityNameTitle" class="display-4 mb-3 text-center text-dark"></h1>
       </div>
+      <!-- Cards -->
       <div class="row row-cols-1 row-cols-lg-2">
         <div id="cardId" class="col mb-3 mb-lg-0 order-lg-1"></div>
         <div class="col map order-lg-0">

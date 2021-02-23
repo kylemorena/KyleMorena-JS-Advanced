@@ -8,7 +8,7 @@ const outputHtml = {
         return info = `
         <a href="#" class="custom text-dark bg-secondary">
           <li class="list-group-item p-1 m-0" data-usage="${info.station.geo[0]},${info.station.geo[1]}">
-            <h6 class="mb-0">${info.station.name}</h6>
+            <h6 class="mb-0" data-usage="${info.station.url}">${info.station.name}</h6>
             <span class="mb-0 text-success">${info.aqi}</span>
             <small class="mb-0">Last Update: ${info.time.stime}</small>
           </li>
@@ -25,8 +25,8 @@ const outputHtml = {
         return info = `
         <a href="#" class="col p-3 a-custom" data-usage="${info.lat};${info.lon}" >
           <div class="d-flex flex-column justify-content-center text-center bg-secondary">
-            <h4 class="mb-0">${info.station.name}</h4>
-            <p class="mb-0">
+            <h4 class="py-2 mb-0">${info.station.name}</h4>
+            <p class="pb-2 mb-0">
               <span style="color:${info.aqiDescription.color}">${info.aqi}</span> 
               <span style="color:${info.aqiDescription.color}">${info.aqiDescription.level}</span>
             </p>
@@ -37,14 +37,14 @@ const outputHtml = {
     else if (match.length===0){
       widgetContainer.innerHTML = `
       <div class="card card-body border-0 mb-1 bg-secondary unavailable">
-        <h4>${unavailable}</h4>
+        <h4 class="p-2">${unavailable}</h4>
         <p class="mb-0 text-uppercase text-light font-weight-bold">data not available</p>
       </div>`;
     }
   },
-  card: function(match,cardContainer,unavailable){
-    if(unavailable==null){
-      const date = new Date(match.time.iso)
+  card: function(match,cardContainer){
+    if(match!=null){
+      const date = (match.time.iso==null)?match.aqiDescription.level : new Date(match.time.iso); 
       if(match.aqi=='-'){ match.aqi = '';}
       cardContainer.innerHTML = `
       <div class="card border-0 text-center bg-secondary card-height">
@@ -58,17 +58,6 @@ const outputHtml = {
         </div>
         <div class="card-footer bg-transparent border-dark">${date}</div>
       </div>`
-    }
-    else{
-    cardContainer.innerHTML = `
-    <div class="card mb-3 border-0 text-center card-height">
-      <div class="card-header bg-transparent border-secondary">${unavailable}</div>
-      <div class="card-body d-flex align-items-center justify-content-center">
-        <h5 class="card-title mb-0 text-uppercase font-weight-bold">
-          Data not available
-        </h5>
-      </div>
-    </div>`
     }
   }
 }
