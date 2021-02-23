@@ -56,6 +56,7 @@ export default function loadMap(waqiToken,mapboxToken,lat,lon,range,cardContaine
     let bounds = `${e.latlng.lat+range},${e.latlng.lng+range},${e.latlng.lat-range},${e.latlng.lng-range}`;
     const dati = loadApiWaqi.mapQueries(bounds,waqiToken,latlng);
     dati.then(res=>{
+      console.log(res);
       const gelocalizedFeed = loadApiWaqi.getCityFeed(res[0].station.name,waqiToken);
       gelocalizedFeed.then(res=>{
         outputHtml.card(res,cardContainer);

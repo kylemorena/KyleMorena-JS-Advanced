@@ -18,7 +18,7 @@ form.position-relative{
     background-color: $gray-500;
   }
   //UL list
-  #ulId{
+  #unorderListId{
     min-width: 25vw;
     height: auto;
     text-overflow: hide;
@@ -26,7 +26,7 @@ form.position-relative{
     h4{
       font-size: 14px;
     }
-    .custom{
+    .no-decoration{
       text-decoration: none;
     }    
   }

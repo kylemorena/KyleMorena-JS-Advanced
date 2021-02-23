@@ -17,7 +17,7 @@ const yourPos = document.getElementById('yourPosId');
 const listContainer = document.getElementById('unorderListId');
 const widgetContainer = document.getElementById('widgetId');
 const cardContainer = document.getElementById('cardId');
-const title = document.getElementById('cityNameTitle')
+const cityTitle = document.getElementById('cityNamecityTitle')
 let range = 0.1; //diventerà un prompt
 
 //#region  onLoad
@@ -26,14 +26,14 @@ window.addEventListener('load', () => {
 })
 //#endregion
 
-//#region  getCurrPos
+//#region  getCurrPos onLoad
 const successCallback = (pos) =>{
   const crd = pos.coords;
   const bounds = `${crd.latitude+range},${crd.longitude+range},${crd.latitude-range},${crd.longitude-range}`;
   const currPos = loadApiWaqi.geoLatLon(`${crd.latitude};${crd.longitude}`,waqiToken);
   currPos.then(posRes=>{ //the posRes = position of geoLatLon Api
     outputHtml.card(posRes,cardContainer);
-    title.innerHTML = posRes.city.name;
+    cityTitle.innerHTML = posRes.city.name;
     const stations = loadApiWaqi.mapQueries(bounds,waqiToken,posRes.city.geo);
     stations.then(res=>{
       outputHtml.widget(res,widgetContainer);
@@ -54,7 +54,7 @@ const options = {
 };
 //#endregion
 
-//#region YourPosition
+//#region YourPosition button
 yourPos.onclick=()=>{
   navigator.geolocation.getCurrentPosition(successCallback, errorCallback,options);
 }
@@ -68,7 +68,7 @@ search.onkeyup = (e) => { // .onkeyup trigger the key .target.value return the k
     dati.then(res => {
       //If outputHtml is open then assign an event on each "list" 
       if(outputHtml.searchBar(res,listContainer)){
-        const listData = listContainer.querySelectorAll("li[data-usage]");
+        const listData = listContainer.querySelectorAll("li[data-latlng]");
         for (let list of listData) {
           list.addEventListener('click', listSelected); 
         }
@@ -90,27 +90,27 @@ window.onclick = (e) =>{
 
 //#region List Selection its called when you click on one list opened by searchbar
 function listSelected(){
-  const dataUsage = this.getAttribute('data-usage'); //return the value inside 'data-usage'
-  const url = this.querySelector('h6').getAttribute('data-usage'); //If you have an error, check the TagName
-  const cityName = this.getElementsByTagName('h6')[0].textContent;
-  title.innerHTML = cityName;
-  const latlng = JSON.parse(`[${dataUsage}]`) 
+  const latlngData = this.getAttribute('data-latlng'); //return the value inside 'data-usage'
+  const url = this.children[0].getAttribute('data-url'); //If you have an error, check the TagName
+  const latlng = JSON.parse(`[${latlngData}]`) 
   const bounds = `${latlng[0]+range},${latlng[1]+range},${latlng[0]-range},${latlng[1]-range}`;
   const stations = loadApiWaqi.mapQueries(bounds,waqiToken,latlng); //here return the Map Queries api
   stations.then(async res => {
-    console.log(res);
-    // if(res.length>0){
-      const gelocalizedFeed = loadApiWaqi.getCityFeed(url,waqiToken);
-      gelocalizedFeed.then(res=>{
-        console.log(res);
-        outputHtml.card(res,cardContainer);
-      })
-    // }
-    // else{ outputHtml.card(res,cardContainer,cityName);}
+    const gelocalizedFeed = loadApiWaqi.getCityFeed(url,waqiToken);
+    gelocalizedFeed.then(res=>{
+      cityTitle.innerHTML = res.city.name;
+      outputHtml.card(res,cardContainer);
+    })
     //after I got the api about stations positions using loadApiWaqi.mapQueries I put load them on the map 
     await loadMap(waqiToken,mapboxToken,latlng[0],latlng[1],range,cardContainer,widgetContainer,listContainer,widgetSelected);
     //also put them on widget
-    await outputHtml.widget(res,widgetContainer,cityName);
+    if(res.length>0){
+      outputHtml.widget(res,widgetContainer);
+    }else{
+      gelocalizedFeed.then(res=>{
+        outputHtml.widget(res,widgetContainer);
+      })
+    }
     //assign an click event on each widget just created
     const widgetItems = widgetContainer.querySelectorAll("a");
       for (let widget of widgetItems) {
@@ -123,10 +123,10 @@ function listSelected(){
 
 //#region Widget Selection its called when you click on one widget
 function widgetSelected(){
-  const widgetLatLon = this.getAttribute('data-usage');
+  const widgetLatLon = this.getAttribute('data-latlng');
   const gelocalizedFeed = loadApiWaqi.geoLatLon(widgetLatLon,waqiToken);
   gelocalizedFeed.then(res =>{
-    title.innerHTML = res.city.name;
+    cityTitle.innerHTML = res.city.name;
     const latlng = res.city.geo;
     const bounds = `${latlng[0]+range},${latlng[1]+range},${latlng[0]-range},${latlng[1]-range}`;
     const stations = loadApiWaqi.mapQueries(bounds,waqiToken,latlng);
