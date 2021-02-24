@@ -37,7 +37,7 @@
    ```
 2. Modificare env.example in .env
    ```sh
-   bisogna mettere le relative API Token
+   mettere al posto di "Your_API_token" le relative API Token
    ```
 3. Installare NPM packages e tutte le Dependencies 
    ```sh
