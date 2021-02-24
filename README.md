@@ -14,7 +14,7 @@
 - l'obiettivo è quello raggiunger un livello avanzato con JavaScript
 
 ---
-### 🛠️ Linguaggi e Tools usati per il progetto:
+### :hammer_and_wrench: Linguaggi e Tools usati per il progetto:
 <code><img height="40" src="https://cdn.jsdelivr.net/npm/programming-languages-logos@0.0.3/src/html/html_128x128.png"></code>
 <code><img height="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg"></code>
 <code><img height="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain.svg"></code>
@@ -23,10 +23,11 @@
 <code><img height="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/webpack/webpack-plain.svg"></code>
 
 ---
-### Prerequisiti
+### :white_check_mark: Prerequisiti
+- Node.js: https://nodejs.org/it/
 - Air Quality Open Data Platform API Token: https://aqicn.org/data-platform/token/#/
 - Mapbox access token: https://account.mapbox.com/access-tokens/
-   - Se non sei registrato ti manderanno l'email con la chiave "Token"
+   - Se non sei registrato ti manderanno l'email con il token di accesso al'API
    
 ---
 ### :arrow_down: Installazione:
