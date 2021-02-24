@@ -12,6 +12,7 @@
 - permette all'utente di ottenere informazioni sui livelli di inquinamento di una determinata città.
 - è un progetto per start2impact come studente
 - l'obiettivo è quello raggiunger un livello avanzato con JavaScript
+
 ---
 ### 🛠️ Linguaggi e Tools usati per il progetto:
 <code><img height="40" src="https://cdn.jsdelivr.net/npm/programming-languages-logos@0.0.3/src/html/html_128x128.png"></code>
@@ -21,8 +22,12 @@
 <code><img height="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg"></code>
 <code><img height="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/webpack/webpack-plain.svg"></code>
 
-<br>
-
+---
+### Prerequisiti
+- Air Quality Open Data Platform API Token: https://aqicn.org/data-platform/token/#/
+- Mapbox access token: https://account.mapbox.com/access-tokens/
+   - Se non sei registrato ti manderanno l'email con la chiave "Token"
+   
 ---
 ### :arrow_down: Installazione:
 1. Clonare il repository
@@ -37,6 +42,7 @@
    ```sh
    npm start
    ```
+   
 ---
 ### 🤝 Connect with me:
 
