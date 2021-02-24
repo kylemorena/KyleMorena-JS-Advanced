@@ -35,11 +35,15 @@
    ```sh
    git clone https://github.com/kylemorena/KyleMorena-JS-Advanced.git
    ```
-2. Installare NPM packages con bootstrap-sass
+2. Modificare env.example in .env
+   ```sh
+   bisogna mettere le relative API Token
+   ```
+3. Installare NPM packages e tutte le Dependencies 
    ```sh
    npm install 
    ```
-3. Per buildare basta eseguire il comando:
+4. Per buildare basta eseguire il comando:
    ```sh
    npm start
    ```
