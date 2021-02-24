@@ -7,28 +7,34 @@ body{
 }
 
 //----------------------------Commons elements-------------------------
+//#region General Elements
+.no-decoration{
+  text-decoration: none;
+}   
+//#endregion
 
 //#region Search bar
 form.position-relative{
   //Input
   #search{
+    background-color: $gray-300;
     min-width: 25vw;
   }
   #search:focus{
-    background-color: $gray-500;
+    background-color: $gray-100;
   }
   //UL list
   #unorderListId{
     min-width: 25vw;
     height: auto;
     text-overflow: hide;
-    font-size: 0.9rem;
-    h4{
-      font-size: 14px;
+    h5{
+      font-size:medium;
+    };
+    p {
+      font-size:small;
     }
-    .no-decoration{
-      text-decoration: none;
-    }    
+     
   }
   .position-absolute{
     right: 0;
@@ -38,33 +44,27 @@ form.position-relative{
 }
 //#endregion
 
-//#region Click Event
-.a-custom{
-  color: $gray-900;
-  text-decoration: none;  
-  div{
-    border-radius: 0.15rem;
-    h4{
-      font-size: medium;
-      font-weight: bold;
+//#region Widget
+#widgetId{
+  a{
+    div{
+      height: 100%;
+      border-radius: 0.25rem;
     }
-    word-wrap: break-word; 
-    min-height: 100%;
+    color: $black;
+    h4{
+      font-size: large;
+    }
+    p{
+      font-size: medium;
+    }
   }
-}
-.unavailable{
-  h3{
-    font-size: medium;
-    font-weight: bold;
-  }
-  word-wrap: break-word; 
-  height: 100%;
 }
 //#endregion
 
 //#region Map
 #mapid{ 
-  height: 400px; 
+  height: 100%; 
 }
 .my-popup-custom{
   p{
@@ -92,11 +92,19 @@ form.position-relative{
     height: 100%;
   }
 }
-
 //#endregion
 
 //#region Card
-.card-height{
-  height: 100%;
+#cardId{
+  .card{
+    height: 100%;
+    h3{
+      font-size: x-large;
+    }
+    p{
+      font-size: large;
+    }
+  }
 }
+
 //#endregion

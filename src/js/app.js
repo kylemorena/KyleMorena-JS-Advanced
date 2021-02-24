@@ -17,7 +17,8 @@ const yourPos = document.getElementById('yourPosId');
 const listContainer = document.getElementById('unorderListId');
 const widgetContainer = document.getElementById('widgetId');
 const cardContainer = document.getElementById('cardId');
-const cityTitle = document.getElementById('cityNamecityTitle')
+const cityTitle = document.getElementById('cityNameTitle')
+console.log(cityTitle)
 let range = 0.1; //diventerà un prompt
 
 //#region  onLoad
