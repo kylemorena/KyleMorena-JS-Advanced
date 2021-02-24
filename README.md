@@ -9,9 +9,9 @@
 ---
 ### :bulb: Progetto counter
 - è un'applicazione web
-- permette all'utente di aumentare o diminuire il counter e far partire o stoppare il timer
+- permette all'utente di ottenere informazioni sui livelli di inquinamento di una determinata città.
 - è un progetto per start2impact come studente
-- l'obiettivo è quello di imparare le basi di JavaScript
+- l'obiettivo è quello raggiunger un livello avanzato con JavaScript
 ---
 ### 🛠️ Linguaggi e Tools usati per il progetto:
 <code><img height="40" src="https://cdn.jsdelivr.net/npm/programming-languages-logos@0.0.3/src/html/html_128x128.png"></code>
@@ -24,15 +24,15 @@
 ### :arrow_down: Installazione:
 1. Clonare il repository
    ```sh
-   git clone https://github.com/kylemorena/KyleMorena-JS-Basics.git
+   git clone https://github.com/kylemorena/KyleMorena-JS-Advanced.git
    ```
 2. Installare NPM packages con bootstrap-sass
    ```sh
    npm install 
    ```
-3. Avviare il browser
+3. Per buildare basta eseguire il comando:
    ```sh
-   se sei su vscode "Alt+B"
+   npm start
    ```
 ---
 ### 🤝 Connect with me:
