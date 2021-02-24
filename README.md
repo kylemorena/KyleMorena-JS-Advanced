@@ -33,7 +33,7 @@
    ```sh
    git clone https://github.com/kylemorena/KyleMorena-JS-Advanced.git
    ```
-2. Modificare env.example in .env
+2. Rinominare .env.example in .env
    ```sh
    mettere al posto di "Your_API_token" le relative API Token
    ```
