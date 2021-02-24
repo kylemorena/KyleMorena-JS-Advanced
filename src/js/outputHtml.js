@@ -67,12 +67,12 @@ const outputHtml = {
             <span style="color:${match.aqiDescription.color}">${match.aqi}</span> 
             <span style="color:${match.aqiDescription.color}">${match.aqiDescription.level}</span>
           </h3>
-          <p class="lead card-text mb-0" style="color:${match.aqiDescription.color}">${match.aqiDescription.health}</p>
+          <p class="lead card-text mb-0">${match.aqiDescription.health}</p>
           <ul class="list-group list-group-flush mt-3 rounded-lg">
-            <li class="list-group-item">Temp: ${match.iaqi.t.v}°C</li>
-            <li class="list-group-item">Pressure: ${match.iaqi.p.v}</li>
-            <li class="list-group-item">Humidity: ${match.iaqi.h.v}%</li>
-            <li class="list-group-item">Wind: ${match.iaqi.w.v} km/h</li>
+            <li class="list-group-item bg-transparent">Temp: ${match.iaqi.t.v}°C</li>
+            <li class="list-group-item bg-transparent">Pressure: ${match.iaqi.p.v}</li>
+            <li class="list-group-item bg-transparent">Humidity: ${match.iaqi.h.v}%</li>
+            <li class="list-group-item bg-transparent">Wind: ${match.iaqi.w.v} km/h</li>
           </ul>
         </div>
         <div class="card-footer bg-transparent border-dark">${date}</div>
