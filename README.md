@@ -11,7 +11,7 @@
 - è un'applicazione web
 - permette all'utente di ottenere informazioni sui livelli di inquinamento di una determinata città.
 - è un progetto per start2impact come studente
-- l'obiettivo è quello raggiunger un livello avanzato con JavaScript
+- l'obiettivo è quello raggiungere un livello avanzato con JavaScript
 
 ---
 ### :hammer_and_wrench: Linguaggi e Tools usati per il progetto:
