@@ -7,7 +7,7 @@
 - ⚡ Fun fact: Sono un appassionato di sport ma mi piace anche il "bingewatch".
 
 ---
-### :bulb: Progetto counter
+### :bulb: Progetto JS-Advanced 
 - è un'applicazione web
 - permette all'utente di ottenere informazioni sui livelli di inquinamento di una determinata città.
 - è un progetto per start2impact come studente
