@@ -17,7 +17,7 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public'),
   },
   optimization:{
     minimizer: [new OptimizeCssAssetsPlugin()]
@@ -25,7 +25,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer:{
     open:true,
-    contentBase: './dist',
+    contentBase: './public',
     hot: true,
     port:8000
   },

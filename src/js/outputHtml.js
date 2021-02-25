@@ -55,28 +55,45 @@ const outputHtml = {
   },
   card: function(match,cardContainer){
     if(match!=null){
+      console.log(match.iaqi!=null)
       const date = (match.time.iso==null)?match.aqiDescription.value : new Date(match.time.iso); 
       if(match.aqi=='-'){ match.aqi = '';}
-      cardContainer.innerHTML = `
-      <div class="card border-0 text-center bg-secondary card-height">
-        <div class="card-header bg-transparent border-dark">
-          <h2>${match.city.name}</h2>
-        </div>
-        <div class="card-body d-flex align-items-center justify-content-center flex-column">
-          <h3 class="card-title">
-            <span style="color:${match.aqiDescription.color}">${match.aqi}</span> 
-            <span style="color:${match.aqiDescription.color}">${match.aqiDescription.level}</span>
-          </h3>
-          <p class="lead card-text mb-0">${match.aqiDescription.health}</p>
-          <ul class="list-group list-group-flush mt-3 rounded-lg">
-            <li class="list-group-item bg-transparent">Temp: ${match.iaqi.t.v}°C</li>
-            <li class="list-group-item bg-transparent">Pressure: ${match.iaqi.p.v}</li>
-            <li class="list-group-item bg-transparent">Humidity: ${match.iaqi.h.v}%</li>
-            <li class="list-group-item bg-transparent">Wind: ${match.iaqi.w.v} km/h</li>
-          </ul>
-        </div>
-        <div class="card-footer bg-transparent border-dark">${date}</div>
-      </div>`
+      if(match.iaqi!=null){
+        cardContainer.innerHTML = `
+        <div class="card border-0 text-center bg-secondary card-height">
+          <div class="card-header bg-transparent border-dark">
+            <h2>${match.city.name}</h2>
+          </div>
+          <div class="card-body d-flex align-items-center justify-content-center flex-column">
+            <h3 class="card-title">
+              <span style="color:${match.aqiDescription.color}">${match.aqi}</span> 
+              <span style="color:${match.aqiDescription.color}">${match.aqiDescription.level}</span>
+            </h3>
+            <p class="lead card-text mb-0">${match.aqiDescription.health}</p>
+            <ul class="list-group list-group-flush mt-3 rounded-lg">
+              <li class="list-group-item bg-transparent">Temp: ${match.iaqi.t.v}°C</li>
+              <li class="list-group-item bg-transparent">Pressure: ${match.iaqi.p.v}</li>
+              <li class="list-group-item bg-transparent">Humidity: ${match.iaqi.h.v}%</li>
+              <li class="list-group-item bg-transparent">Wind: ${match.iaqi.w.v} km/h</li>
+            </ul>
+          </div>
+          <div class="card-footer bg-transparent border-dark">${date}</div>
+        </div>`
+      }else{
+        cardContainer.innerHTML = `
+        <div class="card border-0 text-center bg-secondary card-height">
+          <div class="card-header bg-transparent border-dark">
+            <h2>${match.city.name}</h2>
+          </div>
+          <div class="card-body d-flex align-items-center justify-content-center flex-column">
+            <h3 class="card-title">
+              <span style="color:${match.aqiDescription.color}">${match.aqi}</span> 
+              <span style="color:${match.aqiDescription.color}">${match.aqiDescription.level}</span>
+            </h3>
+            <p class="lead card-text mb-0">${match.aqiDescription.health}</p>
+          <div class="card-footer bg-transparent border-dark">${date}</div>
+        </div>`
+      }
     }
   }
 }
