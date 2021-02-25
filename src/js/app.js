@@ -37,13 +37,17 @@ const yourPos = document.getElementById('yourPosId');
 const listContainer = document.getElementById('unorderListId');
 const widgetContainer = document.getElementById('widgetId');
 const cardContainer = document.getElementById('cardId');
+const tableContainer = document.getElementById('tableId');
 const cityTitle = document.getElementById('cityNameTitle');
 let range = 0.1; //diventerà un prompt
 
 //#region  onLoad
 window.addEventListener('load', () => {
   navigator.geolocation.getCurrentPosition(successCallback, errorCallback,options);
-  loadApi.qualityLevels();
+  const tableData = loadApi.qualityLevels();
+  tableData.then(res=>{
+    outputHtml.table(res,tableContainer);
+  })
 })
 //#endregion
 

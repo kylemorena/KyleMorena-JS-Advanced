@@ -22,7 +22,6 @@ const outputHtml = {
     return true;
   },
   widget : function(match,widgetContainer){
-    console.log(match);
     if(match.length>0){
       widgetContainer.innerHTML = match.map(res=>{ 
         if(res.aqi=='-'){ res.aqi = '';}
@@ -40,7 +39,6 @@ const outputHtml = {
       }).join('');
     }
     else {
-      console.log(match)
       widgetContainer.innerHTML = `
       <a class="col p-3 no-decoration" data-latlng="${match.city.geo[0]};${match.city.geo[1]}" >
           <div class="d-flex flex-column justify-content-center text-center bg-secondary">
@@ -95,6 +93,19 @@ const outputHtml = {
         </div>`
       }
     }
+  },
+  table: function(match,tableContainer){
+    console.log(tableContainer);
+    console.log(match);
+    tableContainer.innerHTML= match.map(info=>{
+      return info = `
+      <tr>
+        <th scope="row" class="align-middle aqi-width" style="color:${info.color}">${info.value}</th>
+        <td class="align-middle" style="color:${info.color}">${info.level}</td>
+        <td class="align-middle" style="color:${info.color}">${info.health}</td>
+        <td class="align-middle" style="color:${info.color}">${info.cautionary}</td>
+      </tr> `
+    }).join('');
   }
 }
 

@@ -25,9 +25,9 @@
     <section class="container my-5">
       <!-- Widgets -->
       <div id="widgetId" class="row row-cols-2 row-cols-lg-4 mb-2"></div>
-       <!-- Title -->
-       <div class="text-center mb-2">
-        <h1 id="cityNameTitle" class="display-4 font-weight-bold mb-3 text-center text-dark"></h1>
+      <!-- Title -->
+      <div class="text-center mb-3">
+        <h1 id="cityNameTitle" class="display-4 font-weight-bold text-light"></h1>
       </div>
       <!-- Cards -->
       <div class="row row-cols-1 row-cols-lg-2">
@@ -38,13 +38,32 @@
       </div>
     </section>
     <!--#endregion-->
+
     <!--#region quality description table -->
-    <section id="tableId" class="container"></section>
+    <section  class="container-fluid">
+      <!-- Title -->
+      <div class="text-center mb-3">
+        <h1 class="display-4 font-weight-bold text-light">Air Quality Index Scale and Color Legend</h1>
+      </div>
+      <!-- Table -->
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">AQI</th>
+            <th scope="col">Level</th>
+            <th scope="col">Health Implications</th>
+            <th scope="col">Cautionary Statement (for PM2.5)</th>
+          </tr>
+        </thead>
+        <tbody id="tableId">
+        </tbody>
+    </section>
     <!--#endregion-->
 
     <!-- #region Footer Copyright -->
     <footer class="blockquote mt-4 pt-3 text-center text-muted">&copy;2021 Designed and created by <cite title="Source  Title">Kyle Denver Morena</cite>
     </footer>
     <!--#endregion-->
+  
   </body>
 </html>

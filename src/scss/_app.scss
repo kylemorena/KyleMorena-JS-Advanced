@@ -128,3 +128,12 @@ form.position-relative{
 }
 
 //#endregion
+.table{
+  .aqi-width{
+    white-space: nowrap;
+    width: fit-content;
+  }
+  #tableId{
+    font-size: medium;
+  }
+}

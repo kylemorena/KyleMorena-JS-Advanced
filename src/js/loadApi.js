@@ -75,8 +75,8 @@ const loadApi = {
     return dati.data;
   },
   qualityLevels: async function(){
-    const json = require('../json/qualityLevels.json');
-    return json;
+    const json = await require('../json/qualityLevels.json');
+    return json.data;
   }
 }
 
