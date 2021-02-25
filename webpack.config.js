@@ -17,7 +17,7 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'public-airpollution'),
+    path: path.resolve(__dirname, 'public'),
   },
   optimization:{
     minimizer: [new OptimizeCssAssetsPlugin()]
@@ -25,7 +25,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer:{
     open:true,
-    contentBase: './public-airpollution',
+    contentBase: './public',
     hot: true,
     port:8000
   },
@@ -63,7 +63,7 @@ module.exports = {
           options: {
             name:'[name].[ext]',
             outputPath: 'img/',
-            public-airpollutionPath: 'img/',
+            publicPath: 'img/'
           }
         }]
       },
