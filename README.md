@@ -8,10 +8,8 @@
 
 ---
 ### :bulb: Progetto JS-Advanced 
-- è un'applicazione web
-- permette all'utente di ottenere informazioni sui livelli di inquinamento di una determinata città.
-- è un progetto per start2impact come studente
-- l'obiettivo è quello raggiungere un livello avanzato con JavaScript
+- è un'applicazione web che permette all'utente di ottenere informazioni sui livelli di inquinamento di una determinata città.
+- è un progetto per start2impact con l'obiettivo è quello raggiungere un livello avanzato con JavaScript
 
 ---
 ### :hammer_and_wrench: Linguaggi e Tools usati per il progetto:
@@ -35,7 +33,7 @@
    ```sh
    git clone https://github.com/kylemorena/KyleMorena-JS-Advanced.git
    ```
-2. Modificare env.example in .env
+2. Rinominare .env.example in .env
    ```sh
    mettere al posto di "Your_API_token" le relative API Token
    ```
