@@ -38,7 +38,7 @@ export default function loadMap(waqiToken,mapboxToken,lat,lon,range,cardContaine
         marker.on('click',onClick);  
         const customPopup = L.popup()
         .setContent(`
-          <h5 class="fw-bold">${element.station.name}</h5>
+          <h6>${element.station.name}</h6>
           <p class="lead text-center" style="background-color:${element.aqiDescription.color}">${element.aqi} ${element.aqiDescription.level}</p>
           <span>${new Date(element.station.time)}</span>
         `
@@ -57,6 +57,7 @@ export default function loadMap(waqiToken,mapboxToken,lat,lon,range,cardContaine
     const dati = loadApiWaqi.mapQueries(bounds,waqiToken,latlng);
     dati.then(res=>{
       const gelocalizedFeed = loadApiWaqi.getCityFeed(res[0].station.name,waqiToken);
+      document.getElementById('cityNameTitle').innerHTML = res[0].station.name;
       gelocalizedFeed.then(res=>{
         outputHtml.card(res,cardContainer);
       })

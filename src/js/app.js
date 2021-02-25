@@ -7,9 +7,28 @@ import '../scss/main.scss';
 import loadApiWaqi from './loadApi';
 import outputHtml from './outputHtml';
 import loadMap from './mapTile';
+// Firebase App (the core Firebase SDK) is always required and must be listed first
+import firebase from "firebase/app";
+// If you enabled Analytics in your project, add the Firebase SDK for Analytics
+import "firebase/analytics";
+//#endregion
+'use strict';
+
+//#region FirebaseConfig
+const firebaseConfig = {
+  apiKey: "AIzaSyCFrQjFILzgv7NPYFwe7r5YTbI6MFjsJJs",
+  authDomain: "kyle-morena.firebaseapp.com",
+  projectId: "kyle-morena",
+  storageBucket: "kyle-morena.appspot.com",
+  messagingSenderId: "1052990960938",
+  appId: "1:1052990960938:web:25a5dde15ac5885cc59a53",
+  measurementId: "G-KZG9VRQ49J"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
 //#endregion
 
-'use strict';
 const waqiToken = process.env.WAQI_Token;
 const mapboxToken = process.env.MAPBOX_Token;
 const search = document.getElementById('search');

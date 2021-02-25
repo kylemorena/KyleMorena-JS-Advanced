@@ -34,7 +34,6 @@ form.position-relative{
     p {
       font-size:small;
     }
-     
   }
   .position-absolute{
     right: 0;
@@ -64,12 +63,23 @@ form.position-relative{
 
 //#region Map
 #mapid{ 
-  height: 100%; 
+  height: 100%;
+  min-height: 500px; 
 }
 .my-popup-custom{
+  h6{
+    font-size: small;
+  }
   p{
+    font-size: x-small;
     font-weight: bold;
     color: #1A1A1A;
+  }
+  span{
+    font-size: x-small;
+  }
+  .leaflet-popup-close-button {
+    display: none;
   }
 }
 .my-div-icon{
