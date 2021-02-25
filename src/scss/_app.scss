@@ -14,18 +14,24 @@ body{
 //#endregion
 
 //#region Search bar
+input.form-control:-webkit-autofill:hover,
+input.form-control:-webkit-autofill:focus {
+    border: 0.15rem solid theme-color("secondary");
+    -webkit-text-fill-color: theme-color("secondary");
+    transition: background-color 5000s ease-in-out 0s;
+  }
 form.position-relative{
   //Input
   #search{
     background-color: $gray-300;
-    min-width: 25vw;
+    max-width: 300px;
   }
   #search:focus{
     background-color: $gray-100;
   }
   //UL list
   #unorderListId{
-    min-width: 25vw;
+    max-width: 300px;
     height: auto;
     text-overflow: hide;
     h5{
@@ -135,7 +141,6 @@ form.position-relative{
 .table{
   .aqi-width{
     white-space: nowrap;
-    width: fit-content;
   }
   #tableId{
     font-size: medium;
