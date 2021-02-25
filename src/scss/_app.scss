@@ -67,10 +67,13 @@ form.position-relative{
   min-height: 500px; 
 }
 .my-popup-custom{
+  width: 180px;
   h6{
     font-size: small;
   }
   p{
+    border-radius: 0.2rem;
+    padding: 3px;
     font-size: x-small;
     font-weight: bold;
     color: #1A1A1A;
@@ -126,8 +129,9 @@ form.position-relative{
     }
   }
 }
-
 //#endregion
+
+//#region Table
 .table{
   .aqi-width{
     white-space: nowrap;
@@ -137,3 +141,4 @@ form.position-relative{
     font-size: medium;
   }
 }
+//#endregion

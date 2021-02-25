@@ -38,15 +38,17 @@ export default function loadMap(waqiToken,mapboxToken,lat,lon,range,cardContaine
         marker.on('click',onClick);  
         const customPopup = L.popup()
         .setContent(`
-          <h6>${element.station.name}</h6>
-          <p class="lead text-center" style="background-color:${element.aqiDescription.color}">${element.aqi} ${element.aqiDescription.level}</p>
-          <span>${new Date(element.station.time)}</span>
+          <div class="d-flex align-items-center flex-column popupCard">
+            <h6 class="mb-2">${element.station.name}</h6>
+            <p class="lead mb-2 mt-0 text-center" style="background-color:${element.aqiDescription.color}">${element.aqi} ${element.aqiDescription.level}</p>
+            <span>${new Date(element.station.time)}</span>
+          </div>
         `
         )
         .setLatLng(marker.getLatLng())
         marker.bindPopup(customPopup,{className:'my-popup-custom'});
         marker.on('mouseover',function (e) {this.openPopup();});  
-        marker.on('mouseout',function (e) {this.closePopup();;});  
+        marker.on('mouseout',function (e) {this.closePopup();});  
       })
     })
   }
