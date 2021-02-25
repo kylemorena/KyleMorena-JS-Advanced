@@ -14,7 +14,6 @@ import "firebase/analytics";
 import loadApi from './loadApi';
 //#endregion
 'use strict';
-
 //#region FirebaseConfig
 const firebaseConfig = {
   apiKey: "AIzaSyCFrQjFILzgv7NPYFwe7r5YTbI6MFjsJJs",
@@ -30,6 +29,7 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 //#endregion
 
+//#region Variables
 const waqiToken = process.env.WAQI_Token;
 const mapboxToken = process.env.MAPBOX_Token;
 const search = document.getElementById('search');
@@ -40,6 +40,7 @@ const cardContainer = document.getElementById('cardId');
 const tableContainer = document.getElementById('tableId');
 const cityTitle = document.getElementById('cityNameTitle');
 let range = 0.1; //diventerà un prompt
+//#endregion
 
 //#region  onLoad
 window.addEventListener('load', () => {
@@ -98,13 +99,22 @@ search.onkeyup = (e) => { // .onkeyup trigger the key .target.value return the k
           list.addEventListener('click', listSelected); 
         }
       };
-      if (e.keyCode === 13) {
-        console.log(res);
-        outputHtml.widget(res,widgetContainer);
-        listContainer.innerHTML='';
-      }
+      
     }).catch(error => {console.log(error)});
   }else{listContainer.innerHTML='';}
+  if (e.keyCode === 13 && e.target.value!='' ) {
+    const dati = loadApiWaqi.search(e.target.value,waqiToken);
+    dati.then(res => {
+    loadMap(waqiToken,mapboxToken,res[0].station.geo[0],res[0].station.geo[1],range,cardContainer,widgetContainer,listContainer,widgetSelected);
+    const gelocalizedFeed = loadApiWaqi.getCityFeed(res[0].station.url,waqiToken);
+    gelocalizedFeed.then(res=>{
+      cityTitle.innerHTML = res.city.name;
+      outputHtml.card(res,cardContainer);
+    })
+    outputHtml.widget(res,widgetContainer);
+    listContainer.innerHTML='';
+    })
+  }
 }
 window.onclick = (e) =>{
   if(e.path[3]!=listContainer){

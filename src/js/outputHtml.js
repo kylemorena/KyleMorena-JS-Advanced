@@ -95,8 +95,6 @@ const outputHtml = {
     }
   },
   table: function(match,tableContainer){
-    console.log(tableContainer);
-    console.log(match);
     tableContainer.innerHTML= match.map(info=>{
       return info = `
       <tr>
