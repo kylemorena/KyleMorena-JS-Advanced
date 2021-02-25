@@ -22,6 +22,7 @@ const outputHtml = {
     return true;
   },
   widget : function(match,widgetContainer){
+    console.log(match);
     if(match.length>0){
       widgetContainer.innerHTML = match.map(res=>{ 
         if(res.aqi=='-'){ res.aqi = '';}
@@ -55,7 +56,6 @@ const outputHtml = {
   },
   card: function(match,cardContainer){
     if(match!=null){
-      console.log(match.iaqi!=null)
       const date = (match.time.iso==null)?match.aqiDescription.value : new Date(match.time.iso); 
       if(match.aqi=='-'){ match.aqi = '';}
       if(match.iaqi!=null){
@@ -85,12 +85,12 @@ const outputHtml = {
           <div class="card-header bg-transparent border-dark">
             <h2>${match.city.name}</h2>
           </div>
-          <div class="card-body d-flex align-items-center justify-content-center flex-column">
+          <div class="card-body d-flex text-center justify-content-center flex-column">
             <h3 class="card-title">
               <span style="color:${match.aqiDescription.color}">${match.aqi}</span> 
               <span style="color:${match.aqiDescription.color}">${match.aqiDescription.level}</span>
             </h3>
-            <p class="lead card-text mb-0">${match.aqiDescription.health}</p>
+          </div>
           <div class="card-footer bg-transparent border-dark">${date}</div>
         </div>`
       }

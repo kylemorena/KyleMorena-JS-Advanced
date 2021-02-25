@@ -102,6 +102,16 @@ form.position-relative{
     height: 100%;
   }
 }
+//fix compatibility
+.leaflet-safari .leaflet-tile-container{
+  transform-origin: 0 0;
+}
+.leaflet-overlay-pane svg {
+	user-select: none;
+}
+.leaflet-oldie .leaflet-popup-content-wrapper {
+	zoom: 1;
+}
 //#endregion
 
 //#region Card

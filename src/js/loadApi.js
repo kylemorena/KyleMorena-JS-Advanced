@@ -4,19 +4,19 @@ function addQualityDesc (aqiValue){
   const json = require('../json/qualityLevels.json');
   switch (true) {
     case isNaN(aqiValue):
-      return json.nan;
+      return json.nodata;
     case aqiValue <= 50:
-      return json.good;
+      return json.data[0];
     case aqiValue <= 100:
-      return json.moderate;
+      return json.data[1];
     case aqiValue <= 150:
-      return json.unhealtysensgroup;
+      return json.data[2];
     case aqiValue <= 200:
-      return json.unhealthy;
+      return json.data[3];
     case aqiValue <= 300:
-      return json.veryunhealty;
+      return json.data[4];
     case aqiValue > 300:
-      return json.hazardous;
+      return json.data[5];
     default:
       console.log("Nessun valore");
   }
@@ -41,6 +41,7 @@ const loadApi = {
       const response = await fetch(`https://api.waqi.info/feed/${name}/?token=${token}`);
       const dati = await response.json();
       dati.data["aqiDescription"] = addQualityDesc(Number(dati.data.aqi));
+      console.log()
       return dati.data;
     } catch (error) {
       console.log(`loadApi.getCityFeed error: ${error}`);
@@ -72,6 +73,10 @@ const loadApi = {
     const dati = await response.json();
     dati.data["aqiDescription"] = addQualityDesc(Number(dati.data.aqi));
     return dati.data;
+  },
+  qualityLevels: async function(){
+    const json = require('../json/qualityLevels.json');
+    return json;
   }
 }
 

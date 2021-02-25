@@ -11,6 +11,7 @@ import loadMap from './mapTile';
 import firebase from "firebase/app";
 // If you enabled Analytics in your project, add the Firebase SDK for Analytics
 import "firebase/analytics";
+import loadApi from './loadApi';
 //#endregion
 'use strict';
 
@@ -36,12 +37,13 @@ const yourPos = document.getElementById('yourPosId');
 const listContainer = document.getElementById('unorderListId');
 const widgetContainer = document.getElementById('widgetId');
 const cardContainer = document.getElementById('cardId');
-const cityTitle = document.getElementById('cityNameTitle')
+const cityTitle = document.getElementById('cityNameTitle');
 let range = 0.1; //diventerà un prompt
 
 //#region  onLoad
 window.addEventListener('load', () => {
   navigator.geolocation.getCurrentPosition(successCallback, errorCallback,options);
+  loadApi.qualityLevels();
 })
 //#endregion
 
