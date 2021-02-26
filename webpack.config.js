@@ -16,7 +16,7 @@ module.exports = {
     widget: './src/js/outputHtml.js'
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: 'js/[name].bundle.js',
     path: path.resolve(__dirname, 'airpollution'),
   },
   optimization:{
@@ -38,7 +38,7 @@ module.exports = {
       chunks:['app']
     }), // aggiunge i tag <script> nel file oltre a crearlo automaticamente index.html in automatico
     new CleanWebpackPlugin(),//cancella in automatica quello che non ci serve
-    new MiniCssExtractPlugin({filename:'[name].css'}),
+    new MiniCssExtractPlugin({filename:'css/[name].css'}),
     new Dotenv({path:'./.env'}) //creo la varibile ambiente
   ],
   module: {
