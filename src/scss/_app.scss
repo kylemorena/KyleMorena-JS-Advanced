@@ -86,6 +86,7 @@ form.position-relative{
 #widgetId{
   a{
     div{
+      background-color: $gray-600;
       height: 100%;
       border-radius: 0.25rem;
     }
@@ -96,6 +97,13 @@ form.position-relative{
     p{
       font-size: medium;
     }
+  }
+  a:hover{
+    div{
+      color: $gray-100;
+      background-color: $gray-500;
+    }
+    text-decoration: none;
   }
 }
 //#endregion
@@ -159,6 +167,7 @@ form.position-relative{
 //#region Card
 #cardId{
   .card{
+    background-color: $gray-400;
     height: 100%;
     h3{
       font-size: x-large;
