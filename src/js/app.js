@@ -106,6 +106,7 @@ search.onkeyup = (e) => { // .onkeyup trigger the key .target.value return the k
     listContainer.innerHTML='';
   }
   if (e.keyCode === 13 && e.target.value!='' ) {
+    e.preventDefault();
     const dati = loadApiWaqi.search(e.target.value,waqiToken);
     dati.then(res => {
     loadMap(waqiToken,mapboxToken,res[0].station.geo[0],res[0].station.geo[1],range,cardContainer,widgetContainer,listContainer,widgetSelected);

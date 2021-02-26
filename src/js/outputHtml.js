@@ -20,23 +20,36 @@ const outputHtml = {
     return true;
   },
   widget : function(match,widgetContainer){
-    if(match.length>0){
+    if(match.length> 0){
       widgetContainer.innerHTML = match.map(res=>{ 
         if(res.aqi=='-'){ res.aqi = '';}
-        return res = `
-        <a href="#" class="col p-3 no-decoration" data-latlng="${res.lat};${res.lon}" >
-          <div class="d-flex flex-column justify-content-center text-center">
-            <h4 class="p-2 mb-0">${res.station.name}</h4>
-            <p class="lead mb-0">
-              <strong style="color:${res.aqiDescription.color}">${res.aqi}</strong> 
-              <strong style="color:${res.aqiDescription.color}">${res.aqiDescription.level}</strong>
-            </p>
-            <p class="p-2 mb-0"><small>${new Date(res.station.time)}</small></p>
-          </div>
-        </a>`
+        if(res.time == undefined){
+          return res = `
+          <a href="#" class="col p-3 no-decoration" data-latlng="${res.lat};${res.lon}" >
+            <div class="d-flex flex-column justify-content-center text-center">
+              <h4 class="p-2 mb-0">${res.station.name}</h4>
+              <p class="lead mb-0">
+                <strong style="color:${res.aqiDescription.color}">${res.aqi}</strong> 
+                <strong style="color:${res.aqiDescription.color}">${res.aqiDescription.level}</strong>
+              </p>
+              <p class="p-2 mb-0"><small>${new Date(res.station.time)}</small></p>
+            </div>
+          </a>`
+        }else{
+          return res = `
+          <a href="#" class="col p-3 no-decoration" data-latlng="${res.lat};${res.lon}" >
+            <div class="d-flex flex-column justify-content-center text-center">
+              <h4 class="p-2 mb-0">${res.station.name}</h4>
+              <p class="lead mb-0">
+                <strong style="color:${res.aqiDescription.color}">${res.aqi}</strong> 
+                <strong style="color:${res.aqiDescription.color}">${res.aqiDescription.level}</strong>
+              </p>
+              <p class="p-2 mb-0"><small>${new Date(res.time.stime)}</small></p>
+            </div>
+          </a>`
+        }
       }).join('');
-    }
-    else {
+    }else {
       widgetContainer.innerHTML = `
       <a class="col p-3 no-decoration" data-latlng="${match.city.geo[0]};${match.city.geo[1]}" >
           <div class="d-flex flex-column justify-content-center text-center bg-secondary">
@@ -55,7 +68,22 @@ const outputHtml = {
       const date = (match.time.iso==null)?match.aqiDescription.value : new Date(match.time.iso); 
       if(match.aqi=='-'){ match.aqi = '';}
       if(match.aqiDescription.value!='Not available'){
-        if(match.iaqi.h===undefined){match.iaqi['h'] = {'v': "no data"}}
+        switch(match.iaqi!=null){
+          case match.iaqi.t===undefined:
+            match.iaqi['t'] = {'v': "no data"};
+            break;
+          case match.iaqi.p===undefined:
+            match.iaqi['p'] = {'v': "no data"};
+            break;
+          case match.iaqi.h===undefined:
+            match.iaqi['h'] = {'v': "no data"};
+            break;
+          case match.iaqi.w===undefined:
+            match.iaqi['w'] = {'v': "no data"};
+            break;
+          default:
+              console.log("Ci sono tutti i dati");
+        }
         cardContainer.innerHTML = `
         <div class="card rounded-sm border-0 text-center card-height">
           <div class="card-header bg-transparent border-light">
