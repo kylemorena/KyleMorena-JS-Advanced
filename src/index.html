@@ -9,16 +9,16 @@
     <!--#region NAVBAR-->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
       <div class="container-fluid p-0">
-        <div class="col-12 col-sm-6 d-flex justify-content-between justify-content-sm-start align-items-center p-0">
+        <div class="col-12 col-sm-6 d-flex justify-content-between justify-content-sm-start">
           <a class="navbar-brand" href="index.html"><img src="./img/svg/KM_logo.svg" alt="" style="width: 40px;"/></a>
-          <button id='yourPosId' type="button" class="btn btn-outline-light" style="height: 40px;"  >Your location</button>
+          <button id='yourPosId' type="button" class="btn btn-secondary">Your location</button>
         </div>
-        <div class="d-flex col-12 col-sm-6 p-0">
-          <form class="form-inline my-2 my-lg-0 w-100 d-flex justify-content-end position-relative">
+        <div class="d-flex col-12 col-sm-6">
+          <form class="my-2 my-lg-0 w-100 d-flex justify-content-end position-relative">
             <input id="search" class="form-control flex-fill" type="search" placeholder="Search city" autocomplete="off"/>
             <!--MATCHLIST-->
-            <ul id="unorderListId" class="p-0 rounded-sm overflow-auto position-absolute">
-            </ul>
+            <div id="unorderListId" class="p-2 flex-fill rounded-sm overflow-auto position-absolute">
+            </div>
           </form>
         </div>
       </div>
@@ -51,7 +51,7 @@
       </div>
       <!-- Table -->
       <div class="table-responsive">
-      <table class="table table-striped table-sm table-dark rounded-sm overflow-hidden">
+      <table class="table table-dark table-hover table-sm rounded-sm overflow-hidden">
         <thead>
           <tr>
             <th scope="col">AQI</th>

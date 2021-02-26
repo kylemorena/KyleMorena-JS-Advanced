@@ -7,15 +7,13 @@ const outputHtml = {
       emptyArray = match.map(res=>{
         if(res.aqi=='-'){ res.aqi = '';}
         return res = `
-        <a href="#" class="text-dark no-decoration">
-          <li class="list-group-item d-flex flex-column p-1 m-0 bg-light" data-latlng="${res.station.geo[0]},${res.station.geo[1]}">
+          <a href="#" class=" d-flex flex-column flex-fill p-1" data-latlng="${res.station.geo[0]},${res.station.geo[1]}">
             <h5 class="mb-1" data-url="${res.station.url}">${res.station.name}</h5>
             <p class="lead mb-0">
               <strong style="color:${res.aqiDescription.color}">${res.aqi} ${res.aqiDescription.level}</strong> 
               <small>Last update: ${res.time.stime}</small>
             </p>
-          </li>
-        </a>`;
+          </a>`;
       }).join('');
       matchList.innerHTML=emptyArray;
     }else{matchList.innerHTML = ''};

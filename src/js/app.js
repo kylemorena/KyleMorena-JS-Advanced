@@ -94,14 +94,17 @@ search.onkeyup = (e) => { // .onkeyup trigger the key .target.value return the k
     dati.then(res => {
       //If outputHtml is open then assign an event on each "list" 
       if(outputHtml.searchBar(res,listContainer)){
-        const listData = listContainer.querySelectorAll("li[data-latlng]");
+        const listData = listContainer.querySelectorAll("a[data-latlng]");
         for (let list of listData) {
           list.addEventListener('click', listSelected); 
         }
+        listContainer.style.display = "block";
       };
-      
     }).catch(error => {console.log(error)});
-  }else{listContainer.innerHTML='';}
+  }else{
+    listContainer.style.display = "none";
+    listContainer.innerHTML='';
+  }
   if (e.keyCode === 13 && e.target.value!='' ) {
     const dati = loadApiWaqi.search(e.target.value,waqiToken);
     dati.then(res => {
@@ -112,12 +115,14 @@ search.onkeyup = (e) => { // .onkeyup trigger the key .target.value return the k
       outputHtml.card(res,cardContainer);
     })
     outputHtml.widget(res,widgetContainer);
+    listContainer.style.display = "none";
     listContainer.innerHTML='';
     })
   }
 }
 window.onclick = (e) =>{
   if(e.path[3]!=listContainer){
+    listContainer.style.display = "none";
     listContainer.innerHTML = '';
   }
 }
