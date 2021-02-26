@@ -25,7 +25,7 @@
 - Node.js: https://nodejs.org/it/
 - Air Quality Open Data Platform API Token: https://aqicn.org/data-platform/token/#/
 - Mapbox access token: https://account.mapbox.com/access-tokens/
-   - Se non sei registrato ti manderanno l'email con il token di accesso al'API
+   - Se non sei registrato ti manderanno l'email con il token di accesso API
    
 ---
 ### :arrow_down: Installazione:
