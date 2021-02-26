@@ -43,7 +43,7 @@
    ```
 4. Per buildare basta eseguire il comando:
    ```sh
-   npm start
+   npm start oppure npm run build per aprire index.html
    ```
    
 ---
