@@ -157,6 +157,7 @@ function listSelected(){
         widget.addEventListener('click', widgetSelected); 
       }
   })
+  listContainer.style.display = "none";
   listContainer.innerHTML = '';
 }
 //#endregion

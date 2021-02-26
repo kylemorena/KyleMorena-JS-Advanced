@@ -54,10 +54,8 @@ const outputHtml = {
     if(match!=null){
       const date = (match.time.iso==null)?match.aqiDescription.value : new Date(match.time.iso); 
       if(match.aqi=='-'){ match.aqi = '';}
-      if(match.iaqi.h==undefined){match.iaqi['h'] = {'v': "no data"}}
-      console.log(match.iaqi.h);
-
-      if(match.iaqi!=null){
+      if(match.aqiDescription.value!='Not available'){
+        if(match.iaqi.h===undefined){match.iaqi['h'] = {'v': "no data"}}
         cardContainer.innerHTML = `
         <div class="card border-0 text-center bg-secondary card-height">
           <div class="card-header bg-transparent border-dark">
